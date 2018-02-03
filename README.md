@@ -1,2 +1,0 @@
-# HealthcareApp
-README.md
