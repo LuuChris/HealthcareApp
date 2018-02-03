@@ -2,7 +2,6 @@
 Team: Alpha Medical Systems
 
 Members:
-  -
   Chris
   Jakub
   Justin
