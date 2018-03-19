@@ -55,7 +55,7 @@ public class doctor extends user{
 
 
 
-public class student extends user{
+public class patient extends user{
 	
 	private String backgroundHistory;
 	private String age;
