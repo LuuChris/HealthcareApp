@@ -1,15 +1,15 @@
 
 public class patient extends user{
 	
-	private String backgroundHistory;
-	private String age;
-	private String gender;
+	private String backgroundHistory, age, gender, address, ethnicity;
 	
-	public patient(String email, int key, String password, String name, String backgroundHistory, String age, String gender) {
-		super(email, key, password, name);
+	public patient(String email, int key, String password, String name, Boolean type, String backgroundHistory, String age, String gender, String address) {
+		super(email, password, name, securityQuestion, securityAnswer, key, type);
 		this.backgroundHistory = backgroundHistory;
 		this.age = age;
 		this.gender = gender;
+		this.address = address;
+		this.ethnicity = ethnicity;
 	}
 	
 	public void CreateTicket() {
@@ -34,8 +34,16 @@ public class patient extends user{
 		return age;
 	}
 	
-	public String gender() {
+	public String getGender() {
 		return gender;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public String getEthnicity() {
+		return ethnicity;
 	}
 	
 //--------------------------------------------------------------------------------
@@ -50,6 +58,14 @@ public class patient extends user{
 	
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	public void setEthnicity(String ethnicity) {
+		this.ethnicity = ethnicity;
 	}
 	
 }

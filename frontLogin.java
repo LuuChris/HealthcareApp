@@ -81,9 +81,7 @@ public class frontLogin extends JFrame{
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//user.Login(title, title){
-					
-				//}
+				user.Login(usernameField.getText(), passwordField.getText());
 			}
 		});
 		loginButton.setBounds(0, 112, 117, 29);
