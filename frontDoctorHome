@@ -20,7 +20,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class frontdoctorhome extends JFrame {
+public class frontDoctorHome extends JFrame {
 
 	private JPanel contentPane;
 
@@ -31,7 +31,7 @@ public class frontdoctorhome extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frontdoctorhome frame = new frontdoctorhome();
+					frontDoctorHome frame = new frontDoctorHome();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class frontdoctorhome extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public frontdoctorhome() {
+	public frontDoctorHome() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 764, 528);
 		contentPane = new JPanel();
