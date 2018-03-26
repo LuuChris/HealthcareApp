@@ -38,7 +38,7 @@ if (mysqli_query($lnk,$sql)) {
 if (mysqli_error($lnk)) echo "Error: Ticket info has already been entered." . '<br />';
 else {
 	$info = "	INSERT INTO ticketInfoTable
-							(ticketID,dateCreated,description)
+							(ticketID,dateCreated,description,patientID,doctorID)
 				VALUES
 							('1','03232018','someDescription'),
 							('2','03242018','someDescription')
@@ -50,6 +50,8 @@ echo '<table border = 1>
 		<th>Ticket ID</th>
 		<th>Date Created</th>
 		<th>Description</th>
+		<th>Patient ID</th
+		<th>Doctor ID</th
 	</tr>';
 
 if (mysqli_query($lnk,$info)) {
@@ -65,6 +67,8 @@ while ($record = mysqli_fetch_array($myData)) {
 	echo '<td align=middle>' . $record['ticketID'] . '</td>';
 	echo '<td>' . $record['dateCreated'] . '</td>';
 	echo '<td>' . $record['description'] . '</td>';
+	echo '<td>' . $record['patientID'] . '</td>';
+	echo '<td>' . $record['doctorID'] . '</td>';
 	echo '</tr>';
 }
 echo '</table>';
