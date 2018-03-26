@@ -26,7 +26,9 @@ mysqli_select_db($lnk,"ticketBase");
 $sql = "CREATE TABLE ticketInfoTable (
 ticketID varchar(10),
 dateCreated varchar(8),
-description varchar(30)
+description varchar(30),
+patientID varchar(20),
+doctorID varchar(20)
 )";
 
 if (mysqli_query($lnk,$sql)) {
