@@ -23,10 +23,6 @@ public class frontCreateTicket extends JFrame {
 	private JTextField textField_4;
 
 	/**
-	 * Launch the application.
-	 */
-
-	/**
 	 * Create the frame.
 	 */
 	public frontCreateTicket() {
