@@ -1,14 +1,9 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Image;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -41,7 +36,7 @@ public class frontLogin extends JFrame{
 	public frontLogin() {
 		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 459, 282);
+		setBounds(100, 100, 466, 316);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
@@ -82,8 +77,10 @@ public class frontLogin extends JFrame{
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				user.Login(usernameField.getText(), passwordField.getText());
+				
 			}
 		});
+		
 		loginButton.setBounds(0, 112, 117, 29);
 		panel_1.add(loginButton);
 		

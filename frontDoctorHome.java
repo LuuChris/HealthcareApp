@@ -1,5 +1,3 @@
-package mednet.Frontend;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -114,4 +112,3 @@ public class frontDoctorHome extends JFrame {
 		panel.setLayout(gl_panel);
 	}
 }
-

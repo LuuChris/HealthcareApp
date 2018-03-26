@@ -2,16 +2,14 @@
 public class ticket {
 	
 	protected int ticketID;
-	private String dateOpened;
+	private String dateCreated;
 	private String description;
-	private String availability;
 	public int userKey;
 	
-	public ticket(int ticketID, String dateOpened, String description, String availability, int userKey) {
+	public ticket(int ticketID, String dateOpened, String description, int userKey) {
 		this.ticketID = ticketID;
-		this.dateOpened = dateOpened;
+		this.dateCreated = dateOpened;
 		this.description = description;
-		this.availability = availability;
 		this.userKey = userKey;
 	}
 	
@@ -25,16 +23,12 @@ public class ticket {
 		return ticketID;
 	}
 	
-	public String getDateOpened() {
-		return dateOpened;
+	public String getDateCreated() {
+		return dateCreated;
 	}
 	
 	public String getDescription() {
 		return description;
-	}
-	
-	public String getAvailability() {
-		return availability;
 	}
 	
 	public int getUserKey() {
@@ -47,16 +41,12 @@ public class ticket {
 		this.ticketID = ticketID;
 	}
 	
-	public void setDateOpened(String dateOpened) {
-		this.dateOpened = dateOpened;
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
 	}
 	
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	
-	public void setAvailability(String availability) {
-		this.availability = availability;
 	}
 	
 	public void setUserKey(int userKey) {

@@ -5,8 +5,8 @@ public class doctor extends user{
 	private String profession;
 	private int workTime;
 	
-	public doctor(String email, int key, String password, String name, Boolean type, String insurance, String profession, int workTime) {
-		super(email, password, name, securityQuestion, securityAnswer, key, type);
+	public doctor(String email, String password, String name, String securityQuestion, String securityAnswer, int key, Boolean type, String insurance, String profession, int workTime, String contact) {
+		super(email, password, name, securityQuestion, securityAnswer, key, type, contact);
 		this.insurance = insurance;
 		this.profession = profession;
 		this.workTime = workTime;

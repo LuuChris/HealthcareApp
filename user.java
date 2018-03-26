@@ -1,18 +1,19 @@
 
 public class user {
 	
-	protected String email, password, name, securityQuestion, securityAnswer;
-	protected int key;
+	protected String contact, email, name, password, securityQuestion, securityAnswer;
+	protected int userKey;
 	private Boolean type;
 	
-	public user(String email, String password, String name, String securityQuestion, String securityAnswer, int key, Boolean type){
+	public user(String email, String password, String name, String securityQuestion, String securityAnswer, int key, Boolean type, String contact){
 		this.email = email;
 		this.password = password;
 		this.name = name;
 		this.securityQuestion = securityQuestion;
 		this.securityAnswer = securityAnswer;
-		this.key = key;
+		this.userKey = key;
 		this.type = type;
+		this.contact = contact;
 	}
 	
 	public void Register() {
@@ -23,10 +24,10 @@ public class user {
 		if(Main.authenticate(username, password)) {
 			setClientTo(username);
 			setWindow(home);
-			frame.setVisible(false);
+			return;
 		}
 		else {
-			notify("Try again");
+			
 		}
 	}
 	

@@ -1,11 +1,12 @@
 
 public class patient extends user{
 	
-	private String backgroundHistory, age, gender, address, ethnicity;
+	private String currentMedicalCondition, allergy, age, gender, address, ethnicity;
 	
-	public patient(String email, int key, String password, String name, Boolean type, String backgroundHistory, String age, String gender, String address) {
-		super(email, password, name, securityQuestion, securityAnswer, key, type);
-		this.backgroundHistory = backgroundHistory;
+	public patient(String email, String password, String name, String securityQuestion, String securityAnswer, int key, Boolean type, String allergy, String currentMedicalCondition, String age, String gender, String address, String ethnicity, String contact) {
+		super(email, password, name, securityQuestion, securityAnswer, key, type, contact);
+		this.currentMedicalCondition = currentMedicalCondition;
+		this.allergy = allergy;
 		this.age = age;
 		this.gender = gender;
 		this.address = address;
@@ -26,8 +27,12 @@ public class patient extends user{
 	
 //-------------------------------------------------------------------------------
 	
-	public String getBackgroundHistory() {
-		return backgroundHistory;
+	public String getCurrentMedicalCondition() {
+		return currentMedicalCondition;
+	}
+	
+	public String getAllergy() {
+		return allergy;
 	}
 	
 	public String getAge() {
@@ -48,8 +53,12 @@ public class patient extends user{
 	
 //--------------------------------------------------------------------------------
 
-	public void setBackgroundHistory(String backgroundHistory) {
-		this.backgroundHistory = backgroundHistory;
+	public void setCurrentMedicalCondition(String currentMedicalCondition) {
+		this.currentMedicalCondition = currentMedicalCondition;
+	}
+	
+	public void setAllergy(String allergy) {
+		this.allergy = allergy;
 	}
 	
 	public void setAge(String age) {
