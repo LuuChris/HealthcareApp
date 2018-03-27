@@ -1,19 +1,26 @@
+package mednet.Frontend;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+
 public class frontLogin extends JFrame{
 	private JTextField usernameField;
 	private JTextField passwordField;
-
+	public static int UserKey;
 	/**
 	 * Launch the application.
 	 */
@@ -29,11 +36,12 @@ public class frontLogin extends JFrame{
 			}
 		});
 	}
-
+	Connection connection=null;
 	/**
 	 * Create the frame.
 	 */
 	public frontLogin() {
+		
 		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 466, 316);
@@ -73,13 +81,52 @@ public class frontLogin extends JFrame{
 		panel_1.add(passwordField);
 		passwordField.setColumns(10);
 		
+		connection = sqlConnection.dbConnector();
+		
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				user.Login(usernameField.getText(), passwordField.getText());
-				
-			}
-		});
+			public void actionPerformed(ActionEvent arg0) {
+				Connection conn = null;
+				PreparedStatement stmt = null;
+				try {
+					String sql;
+		            sql = "SELECT * FROM user";
+		            stmt = connection.prepareStatement(sql);
+		            ResultSet rs = stmt.executeQuery(sql);
+		            String username = usernameField.getText();
+		            String password = passwordField.getText();
+		            int count = 0;
+		            while(rs.next()){
+		         
+		             if((username.equals(rs.getString("username"))) && 
+		               (password.equals(rs.getString("password")))) {
+		            	 UserKey = rs.getInt("UserKey");
+		            	 count = 1;
+		            	 break;	
+		                }
+		             count++;
+		            }
+		            if(count == 1) {
+		            	 JOptionPane.showMessageDialog(null, "username and password is right");
+		            	 
+		            	 dispose();
+		            	 frontdoctorhome doctorinfo = new frontdoctorhome();
+		            	 doctorinfo.setVisible(true);
+		            }else {
+		            	 JOptionPane.showMessageDialog(null, "username and password is not right");
+		            }
+		         
+		            rs.close();
+		            stmt.close();
+		            conn.close();
+		        }catch(Exception e){
+		           
+		            e.printStackTrace();
+		        }
+		      
+		    }
+		}
+);
 		
 		loginButton.setBounds(0, 112, 117, 29);
 		panel_1.add(loginButton);
