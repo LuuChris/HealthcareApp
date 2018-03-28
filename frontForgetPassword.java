@@ -1,10 +1,12 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -19,11 +21,8 @@ public class frontForgetPassword extends JFrame {
 	private JPanel contentPane;
 	private JTextField emailField;
 
-	/**
-	 * Create the frame.
-	 */
 	public frontForgetPassword() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -34,7 +33,7 @@ public class frontForgetPassword extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel enterEmailLabel = new JLabel("Enter email address:");
+		JLabel enterEmailLabel = new JLabel("Enter username:");
 		enterEmailLabel.setBounds(56, 115, 133, 16);
 		panel.add(enterEmailLabel);
 		
@@ -48,15 +47,22 @@ public class frontForgetPassword extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(emailField.getText()!=null) {
 					try {
-						Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/UserDB", "root", "password");
+						Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
 						Statement stmt = con.createStatement();
-						ResultSet res = stmt.executeQuery("select * from users");
+						ResultSet res = stmt.executeQuery("select * from userTable");
+						Boolean temp=true;
 						while(res.next()) {
-							if( (emailField.getText() ).equals(res.getString("email") ) ) {
-								frontForgetQuestion frame = new frontForgetQuestion(res.getString("securityquestion"), res.getString("securityanswer"), res.getString("password"));
+							if( (emailField.getText() ).equals(res.getString("username") ) ) {
+								frontForgetQuestion frame = new frontForgetQuestion(res.getInt("securityint"), res.getString("securityanswer"), res.getString("password"));
 								frame.setVisible(true);
+								setVisible(false);
+								temp=false;
 							}
 						}
+						if(temp) {
+						JOptionPane.showMessageDialog(null, "Try again!");
+						}
+						
 					}
 					catch(Exception exc) {
 						System.out.println("Error");

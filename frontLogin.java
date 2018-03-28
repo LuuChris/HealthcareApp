@@ -1,5 +1,3 @@
-package mednet.Frontend;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -9,39 +7,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-
 public class frontLogin extends JFrame{
 	private JTextField usernameField;
 	private JTextField passwordField;
-	public static int UserKey;
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frontLogin frame = new frontLogin();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	Connection connection=null;
-	/**
-	 * Create the frame.
-	 */
+	
 	public frontLogin() {
-		
 		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 466, 316);
@@ -61,12 +35,12 @@ public class frontLogin extends JFrame{
 		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		loginLabel.setFont(new Font("Helvetica", Font.PLAIN, 15));
 		
-		JLabel usernameLabel = new JLabel("Username(email)");
+		JLabel usernameLabel = new JLabel("Username:");
 		usernameLabel.setBounds(0, 46, 107, 16);
 		panel_1.add(usernameLabel);
 		usernameLabel.setFont(new Font("Helvetica", Font.PLAIN, 13));
 		
-		JLabel passwordLabel = new JLabel("Password");
+		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setBounds(0, 84, 61, 16);
 		panel_1.add(passwordLabel);
 		passwordLabel.setFont(new Font("Helvetica", Font.PLAIN, 13));
@@ -81,61 +55,55 @@ public class frontLogin extends JFrame{
 		panel_1.add(passwordField);
 		passwordField.setColumns(10);
 		
-		connection = sqlConnection.dbConnector();
-		
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Connection conn = null;
-				PreparedStatement stmt = null;
-				try {
-					String sql;
-		            sql = "SELECT * FROM user";
-		            stmt = connection.prepareStatement(sql);
-		            ResultSet rs = stmt.executeQuery(sql);
-		            String username = usernameField.getText();
-		            String password = passwordField.getText();
-		            int count = 0;
-		            while(rs.next()){
-		         
-		             if((username.equals(rs.getString("username"))) && 
-		               (password.equals(rs.getString("password")))) {
-		            	 UserKey = rs.getInt("UserKey");
-		            	 count = 1;
-		            	 break;	
-		                }
-		             count++;
-		            }
-		            if(count == 1) {
-		            	 JOptionPane.showMessageDialog(null, "username and password is right");
-		            	 
-		            	 dispose();
-		            	 frontdoctorhome doctorinfo = new frontdoctorhome();
-		            	 doctorinfo.setVisible(true);
-		            }else {
-		            	 JOptionPane.showMessageDialog(null, "username and password is not right");
-		            }
-		         
-		            rs.close();
-		            stmt.close();
-		            conn.close();
-		        }catch(Exception e){
-		           
-		            e.printStackTrace();
-		        }
-		      
-		    }
-		}
-);
+			public void actionPerformed(ActionEvent e) {
+				String username = usernameField.getText();
+				String password = passwordField.getText();
+				if(Main.authenticate(username, password)) {
+					
+					if(Main.check(username, password).equals("0")) {
+						patient p = Main.pcheck(username, password);
+						frontPatientHome f = new frontPatientHome(p);
+						f.setVisible(true);
+						setVisible(false);
+					}
+					
+					if(Main.check(username, password).equals("1")) {
+						doctor d = Main.dcheck(username, password);
+						frontDoctorHome f = new frontDoctorHome(d);
+						f.setVisible(true);
+						setVisible(false);
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Account not valid!");
+				}
+				
+			}
+		});
 		
 		loginButton.setBounds(0, 112, 117, 29);
 		panel_1.add(loginButton);
 		
 		JButton registerButton = new JButton("Register");
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				user.Register();
+			}
+		});
+		
 		registerButton.setBounds(132, 112, 117, 29);
 		panel_1.add(registerButton);
 		
 		JButton forgetButton = new JButton("Forget Password?");
+		forgetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				user.ForgetPassword();
+			}
+		});
+		
 		forgetButton.setBounds(66, 146, 117, 16);
 		panel_1.add(forgetButton);
 		forgetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 10));

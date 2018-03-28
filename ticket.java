@@ -2,15 +2,16 @@
 public class ticket {
 	
 	protected int ticketID;
-	private String dateCreated;
+	private String datecreated;
 	private String description;
-	public int userKey;
+	public int patientkey, doctorkey;
 	
-	public ticket(int ticketID, String dateOpened, String description, int userKey) {
+	public ticket(int ticketID, String datecreated, String description, int patientkey, int doctorkey) {
 		this.ticketID = ticketID;
-		this.dateCreated = dateOpened;
+		this.datecreated = datecreated;
 		this.description = description;
-		this.userKey = userKey;
+		this.patientkey = patientkey;
+		this.doctorkey = doctorkey;
 	}
 	
 	public void ResolveTicket() {
@@ -24,15 +25,19 @@ public class ticket {
 	}
 	
 	public String getDateCreated() {
-		return dateCreated;
+		return datecreated;
 	}
 	
 	public String getDescription() {
 		return description;
 	}
 	
-	public int getUserKey() {
-		return userKey;
+	public int getPatientKey() {
+		return patientkey;
+	}
+	
+	public int getDoctorKey() {
+		return doctorkey;
 	}
 	
 //----------------------------------------------------------------------------------------
@@ -41,16 +46,20 @@ public class ticket {
 		this.ticketID = ticketID;
 	}
 	
-	public void setDateCreated(String dateCreated) {
-		this.dateCreated = dateCreated;
+	public void setDateCreated(String datecreated) {
+		this.datecreated = datecreated;
 	}
 	
 	public void setDescription(String description) {
 		this.description = description;
 	}
 	
-	public void setUserKey(int userKey) {
-		this.userKey = userKey;
+	public void setPatientKey(int patientkey) {
+		this.patientkey = patientkey;
+	}
+	
+	public void setDoctorKey(int doctorkey) {
+		this.doctorkey = doctorkey;
 	}
 
 }
