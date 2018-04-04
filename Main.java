@@ -37,6 +37,8 @@ public class Main {
 	*/
 		
 	}
+	
+//Login: Checks if the username and password exists in the database, in the same account
 	public static Boolean authenticate(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -58,7 +60,8 @@ public class Main {
 		}
 		return false;
 	}
-	
+
+//Login: Obtains the account type(1=doctor, 0=patient) for the account with username and password
 	public static String check(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -78,6 +81,8 @@ public class Main {
 		return "ERROR";
 	}
 	
+	
+//Login: btains all the information of a patient and stores it in a patient object
 	public static patient pcheck(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -127,6 +132,7 @@ public class Main {
 		return null;
 	}
 	
+//Login: obtains all the information of a doctor and stores it in a doctor object
 	public static doctor dcheck(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -171,6 +177,7 @@ public class Main {
 		return null;
 	}
 	
+//Registration: Checks if username and email already exists in the database
 	public static Boolean checkUser(String username, String email) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");

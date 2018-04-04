@@ -48,16 +48,8 @@ public class frontPatientHome extends JFrame {
 				patient.CreateTicket(p.getUserKey());
 			}
 		});
-		createButton.setBounds(49, 341, 148, 48);
+		createButton.setBounds(137, 341, 148, 48);
 		panel.add(createButton);
-		
-		JButton editButton = new JButton("Edit Ticket");
-		editButton.addActionListener(new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			}
-		});
-		editButton.setBounds(247, 341, 132, 48);
-		panel.add(editButton);
 		
 		JButton viewButton = new JButton("View Doctor Info");
 		viewButton.addActionListener(new ActionListener() {
@@ -66,7 +58,7 @@ public class frontPatientHome extends JFrame {
 				f.setVisible(true);
 			}
 		});
-		viewButton.setBounds(441, 341, 148, 48);
+		viewButton.setBounds(344, 341, 148, 48);
 		panel.add(viewButton);
 		
 		JButton btnNewButton = new JButton("Logout");
