@@ -11,14 +11,14 @@ import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class frontDoctorChoose extends JFrame {
+public class frontViewTicket extends JFrame {
 
 	private JPanel contentPane;
 
 	/**
 	 * Create the frame.
 	 */
-	public frontDoctorChoose(doctor d) {
+	public frontViewTicket(doctor d) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -35,23 +35,23 @@ public class frontDoctorChoose extends JFrame {
 		panel.add(scrollPane);
 		
 		
-		JList list = new JList(Main.ticketlist()) ;
+		JList list = new JList(Main.takenticketlist(d.getUserKey())) ;
 		scrollPane.setViewportView(list);
 		
-		JButton chooseButton = new JButton("Choose");
-		chooseButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String snum = list.getSelectedValue().toString().substring(11,16);
-				int num = Integer.parseInt(snum);
-				Main.addDoctorToTicket(num, d.getUserKey());
-				setVisible(false);
-			}
-		});
-		chooseButton.setBounds(238, 216, 117, 29);
-		panel.add(chooseButton);
-		
-		JLabel ticketLabel = new JLabel("Tickets");
+		JLabel ticketLabel = new JLabel("Taken Tickets");
 		ticketLabel.setBounds(24, 19, 107, 16);
 		panel.add(ticketLabel);
+		
+		JButton btnViewPatientInfo = new JButton("View Patient Info");
+		btnViewPatientInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String snum = list.getSelectedValue().toString().substring(31,36);
+				int num = Integer.parseInt(snum);
+				Main.viewPatientInfo(num);
+			}
+		});
+		btnViewPatientInfo.setBounds(242, 207, 149, 29);
+		panel.add(btnViewPatientInfo);
 	}
 }
+

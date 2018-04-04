@@ -9,33 +9,19 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.JScrollPane;
 
 public class frontPatientHome extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtDescription;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frontPatientHome frame = new frontPatientHome();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public frontPatientHome() {
-		setTitle("Homepage");
+	public frontPatientHome(patient p) {
+		setTitle("Patient Homepage");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 691, 462);
 		contentPane = new JPanel();
@@ -51,31 +37,58 @@ public class frontPatientHome extends JFrame {
 		nameLabel.setBounds(49, 40, 61, 16);
 		panel.add(nameLabel);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(107, 40, 61, 16);
-		panel.add(lblNewLabel);
+		JLabel dynamicName = new JLabel();
+		dynamicName.setText(p.firstname + " " + p.lastname);
+		dynamicName.setBounds(107, 40, 258, 16);
+		panel.add(dynamicName);
 		
 		JButton createButton = new JButton("Create Ticket");
+		createButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				patient.CreateTicket(p.getUserKey());
+			}
+		});
 		createButton.setBounds(49, 341, 148, 48);
 		panel.add(createButton);
 		
 		JButton editButton = new JButton("Edit Ticket");
+		editButton.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			}
+		});
 		editButton.setBounds(247, 341, 132, 48);
 		panel.add(editButton);
 		
 		JButton viewButton = new JButton("View Doctor Info");
+		viewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frontDoctorList f = new frontDoctorList(p);
+				f.setVisible(true);
+			}
+		});
 		viewButton.setBounds(441, 341, 148, 48);
 		panel.add(viewButton);
 		
-		txtDescription = new JTextField();
-		txtDescription.setText("Description");
-		txtDescription.setBounds(51, 92, 398, 212);
-		panel.add(txtDescription);
-		txtDescription.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Logout");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frontLogin f = new frontLogin();
+				f.setVisible(true);
+				setVisible(false);
+			}
+		});
 		btnNewButton.setBounds(529, 39, 103, 21);
 		panel.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(69, 68, 310, 243);
+		panel.add(scrollPane);
+		
+		JTextArea txtrDescription = new JTextArea();
+		scrollPane.setViewportView(txtrDescription);
+		txtrDescription.setFont(new Font("Dialog", Font.PLAIN, 15));
+		txtrDescription.setText("Account Information\n"+"Contact#: "+p.contact+"\nEmail: "+p.email+"\nUsername: "+p.username+"\nPassword: "+p.password+"\nType: "+p.type+"\nUserkey: "+p.getUserKey()+"\nAllergies: "+p.getAllergy()+"\nAddress: "+p.getAddress());
+		txtrDescription.append("\nMedical Conditions: "+p.getMedicalCondition()+"\nAge: "+p.getAge());
+		txtrDescription.setEditable(false);
 	}
-
 }

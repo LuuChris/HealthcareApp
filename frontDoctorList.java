@@ -1,4 +1,4 @@
-package mednet.Frontend;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -10,21 +10,25 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JList;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class frontDoctorList extends JFrame {
 
 	private JPanel contentPane;
 
 	/**
-	 * Launch the application.
-	 */
-	
-
-	/**
 	 * Create the frame.
 	 */
-	public frontDoctorList() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public frontDoctorList(patient p) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 764, 528);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -40,28 +44,63 @@ public class frontDoctorList extends JFrame {
 		lblDoctorList.setBounds(307, 11, 131, 26);
 		panel.add(lblDoctorList);
 		
-		JButton button = new JButton("Log out");
-		button.setBounds(544, 15, 89, 23);
-		panel.add(button);
-		
-		JLabel lblTheseAreThe = new JLabel("These are the doctors who chosed your ticket:");
+		JLabel lblTheseAreThe = new JLabel("These are the doctors who chose your ticket:");
 		lblTheseAreThe.setFont(new Font("Arial", Font.PLAIN, 14));
 		lblTheseAreThe.setBounds(10, 35, 349, 56);
 		panel.add(lblTheseAreThe);
 		
-		JList list = new JList();
-		list.setBounds(10, 81, 495, 387);
-		panel.add(list);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 84, 677, 339);
+		panel.add(scrollPane);
 		
-		JButton btnDoctorsInfromation = new JButton("Information");
-		btnDoctorsInfromation.setFont(new Font("Arial", Font.PLAIN, 18));
-		btnDoctorsInfromation.setBounds(546, 81, 160, 65);
-		panel.add(btnDoctorsInfromation);
+		JTextArea doctorArea = new JTextArea();
+		doctorArea.setText("");
+		doctorArea.setEditable(false);
+		scrollPane.setViewportView(doctorArea);
 		
-		JButton button_4 = new JButton("Go Back");
-		button_4.setFont(new Font("Arial", Font.PLAIN, 18));
-		button_4.setBounds(546, 375, 160, 65);
-		panel.add(button_4);
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Statement stmt = con.createStatement();
+			Statement stm = con.createStatement();
+			Statement st = con.createStatement();
+			ResultSet res = stmt.executeQuery("select * from ticketTable");
+			ResultSet re = stm.executeQuery("select * from userTable");
+			ResultSet r = st.executeQuery("select * from doctorTable");
+			int dkey;
+			String firstname = "";
+			String lastname = "";
+			String specialty = "";
+			String contact = "";
+			String email = "";
+			String insurance = "";
+			String workstart = "";
+			String workend = "";
+			while(res.next()) {
+				if(p.getUserKey()==res.getInt("patientkey") && res.getInt("doctorkey")!=-1) {
+					dkey = res.getInt("doctorkey");
+					while(re.next()) {
+						if(dkey==re.getInt("userkey")) {
+							firstname = re.getString("firstname");
+							lastname = re.getString("lastname");
+							contact = re.getString("contact");
+							email = re.getString("email");
+							while(r.next()) {
+								if(dkey==r.getInt("userkey")) {
+									specialty = r.getString("specialty");
+									insurance = r.getString("insurance");
+									workstart = r.getString("workstart");
+									workend = r.getString("workend");
+									doctorArea.setText("\nName: "+firstname+" "+lastname+" || Specialty: "+specialty+" || Contact info: "+email+", "+contact+"");
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		catch(Exception exc) {
+			System.out.println("Error List");
+			exc.printStackTrace();
+		}
 	}
-
 }

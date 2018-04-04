@@ -1,16 +1,10 @@
-package mednet.Frontend;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.sql.*;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import net.proteanit.sql.DbUtils;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import java.awt.Font;
 import java.awt.Color;
@@ -23,24 +17,18 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
-public class frontdoctorhome extends JFrame {
+public class frontDoctorHome extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
-
-	/**
-	 * Launch the application.
-	 */
-	Connection connection = null;
 	/**
 	 * Create the frame.
 	 */
-	public frontdoctorhome() {
-		connection = sqlConnection.dbConnector();
+	public frontDoctorHome(doctor d) {
+		setTitle("Doctor Homepage");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 764, 528);
 		contentPane = new JPanel();
@@ -52,49 +40,83 @@ public class frontdoctorhome extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		
 		JButton btnNewButton = new JButton("Choose Ticket");
-		btnNewButton.setBounds(134, 328, 160, 65);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				frontDoctorChoose f = new frontDoctorChoose(d);
+				f.setVisible(true);
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 18));
 		
 		JButton btnNewButton_1 = new JButton("View Ticket");
-		btnNewButton_1.setBounds(444, 328, 160, 65);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frontViewTicket f = new frontViewTicket(d);
+				f.setVisible(true);
+			}
+		});
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 18));
 		
 		JButton btnLogOut = new JButton("Log out");
-		btnLogOut.setBounds(622, 27, 89, 23);
-		
-		JLabel lblNewLabel_1 = new JLabel("Homepage");
-		lblNewLabel_1.setBounds(305, 0, 131, 26);
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 18));
-		panel.setLayout(null);
-		panel.add(lblNewLabel_1);
-		panel.add(btnNewButton);
-		panel.add(btnNewButton_1);
-		panel.add(btnLogOut);
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frontLogin f = new frontLogin();
+				f.setVisible(true);
+				setVisible(false);
+			}
+		});
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(43, 42, 469, 265);
-		panel.add(scrollPane);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
-		PreparedStatement stmt = null;
-		try {
-			int key = frontLogin.UserKey;
-			String sql;
-            sql = "SELECT * FROM doctor where UserKey = ?";
-            stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, key);
-            ResultSet rs = stmt.executeQuery();
-            table.setModel(DbUtils.resultSetToTableModel(rs));
-		}catch(Exception e){
-	           
-            e.printStackTrace();
-        }
-    
+		JLabel lblName = new JLabel("Name:");
 		
+		JLabel nameLabel = new JLabel(d.getFirstName()+" "+d.getLastName());
+		GroupLayout gl_panel = new GroupLayout(panel);
+		gl_panel.setHorizontalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(76)
+					.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
+							.addGap(150)
+							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblName)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
+							.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+								.addGap(18)
+								.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(150, Short.MAX_VALUE))
+		);
+		gl_panel.setVerticalGroup(
+			gl_panel.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panel.createSequentialGroup()
+					.addGap(31)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblName)
+						.addComponent(nameLabel))
+					.addGap(18)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnLogOut)
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE))
+					.addGap(32)
+					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
+					.addGap(86))
+		);
+		
+		JTextArea txtrK = new JTextArea();
+		txtrK.setText("k");
+		txtrK.setFont(new Font("Dialog", Font.PLAIN, 15));
+		txtrK.setText("Account Information\n"+"Contact#: "+d.contact+"\nEmail: "+d.email+"\nUsername: "+d.username+"\nPassword: "+d.password+"\nType: "+d.type+"\nUserkey: "+d.getUserKey()+"\nInsurances: "+d.getInsurance()+"\nSpecialty: "+d.getSpecialty());
+		txtrK.append("\nWorkstart: "+d.getWorkStart()+"\nWorkend: "+d.getWorkEnd());
+		scrollPane.setViewportView(txtrK);
+		txtrK.setEditable(false);
+		panel.setLayout(gl_panel);
 	}
 }

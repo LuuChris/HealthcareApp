@@ -21,117 +21,121 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 
 public class Register2 extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField firstname;
-	private JTextField lastname;
-	private JTextField insurance;
-	private JTextField textField;
+	private JTextField addressField;
+	private JTextField ageField;
+	private JTextField allergyField;
+	private JTextField conditionField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Register2 frame = new Register2();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Register2() {
+	public Register2(String username, String password, String firstname, String lastname, String contact, String email, int securityint, String securityanswer, String type) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 625);
+		setBounds(100, 100, 540, 782);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblFirstName = new JLabel("First Name:");
-		lblFirstName.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblFirstName.setBounds(58, 77, 109, 109);
-		contentPane.add(lblFirstName);
+		JLabel ageLabel = new JLabel("Age:");
+		ageLabel.setLabelFor(ageLabel);
+		ageLabel.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+		ageLabel.setBounds(58, 258, 132, 56);
+		contentPane.add(ageLabel);
 		
-		JLabel lblLastName = new JLabel("Last Name:");
-		lblLastName.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblLastName.setBounds(58, 139, 132, 109);
-		contentPane.add(lblLastName);
+		JLabel ethnicityLabel = new JLabel("Ethnicity:");
+		ethnicityLabel.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+		ethnicityLabel.setBounds(58, 334, 87, 109);
+		contentPane.add(ethnicityLabel);
 		
-		JLabel lblDateOfBirth = new JLabel("Date of Birth:");
-		lblDateOfBirth.setLabelFor(lblDateOfBirth);
-		lblDateOfBirth.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblDateOfBirth.setBounds(58, 270, 132, 109);
-		contentPane.add(lblDateOfBirth);
+		JLabel addressLabel = new JLabel("Address:");
+		addressLabel.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+		addressLabel.setBounds(58, 163, 109, 50);
+		contentPane.add(addressLabel);
 		
-		JLabel lblGender = new JLabel("Gender:");
-		lblGender.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblGender.setBounds(58, 333, 87, 109);
-		contentPane.add(lblGender);
+		addressField = new JTextField();
+		addressField.setColumns(10);
+		addressField.setBounds(242, 180, 210, 22);
+		contentPane.add(addressField);
 		
-		JLabel lblEthnicity = new JLabel("Ethnicity:");
-		lblEthnicity.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblEthnicity.setBounds(58, 396, 87, 109);
-		contentPane.add(lblEthnicity);
+		ageField = new JTextField();
+		ageField.setBounds(242, 278, 210, 22);
+		contentPane.add(ageField);
+		ageField.setColumns(10);
 		
-		JLabel lblInsurance = new JLabel("Insurance:");
-		lblInsurance.setFont(new Font("Century Gothic", Font.PLAIN, 20));
-		lblInsurance.setBounds(58, 204, 109, 109);
-		contentPane.add(lblInsurance);
+		JComboBox ethnicityBox = new JComboBox();
+		ethnicityBox.setModel(new DefaultComboBoxModel(new String[] {"", "White ", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Highlander", "Other"}));
+		ethnicityBox.setBounds(242, 381, 210, 22);
+		contentPane.add(ethnicityBox);
 		
-		firstname = new JTextField();
-		firstname.setBounds(242, 123, 164, 22);
-		contentPane.add(firstname);
-		firstname.setColumns(10);
+		JLabel allergiesLabel = new JLabel("List Allergies:");
+		allergiesLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
+		allergiesLabel.setBounds(58, 470, 132, 31);
+		contentPane.add(allergiesLabel);
 		
-		lastname = new JTextField();
-		lastname.setColumns(10);
-		lastname.setBounds(242, 185, 164, 22);
-		contentPane.add(lastname);
+		JLabel conditionLabel = new JLabel("List Medical Conditions:");
+		conditionLabel.setFont(new Font("Dialog", Font.PLAIN, 15));
+		conditionLabel.setBounds(58, 550, 179, 79);
+		contentPane.add(conditionLabel);
 		
-		insurance = new JTextField();
-		insurance.setColumns(10);
-		insurance.setBounds(242, 250, 164, 22);
-		contentPane.add(insurance);
+		allergyField = new JTextField();
+		allergyField.setBounds(242, 475, 210, 26);
+		contentPane.add(allergyField);
+		allergyField.setColumns(10);
 		
-		JButton btnContinue = new JButton("Continue");
-		btnContinue.addActionListener(new ActionListener() {
+		conditionField = new JTextField();
+		conditionField.setBounds(242, 577, 210, 26);
+		contentPane.add(conditionField);
+		conditionField.setColumns(10);
+		
+		JLabel registerLabel = new JLabel("Patient Registration");
+		registerLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		registerLabel.setBounds(58, 57, 348, 71);
+		contentPane.add(registerLabel);
+		
+		JButton continueButton = new JButton("Continue");
+		continueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String address = addressField.getText();
+				int age = Integer.parseInt(ageField.getText());
+				String ethnicity = (String) ethnicityBox.getSelectedItem();
+				String allergy = allergyField.getText();
+				String medicalcondition = conditionField.getText();
+				if(allergy.equals("")) {
+					allergy="none";
+				}
+				if(medicalcondition.equals("")) {
+					medicalcondition="none";
+				}
+				if(address.length()>5 && age>0 && ethnicity.length()>1) {
+					
+					patient p = new patient(contact, email, firstname, lastname, password, securityanswer, type, username, securityint, Main.generateUserkey(), allergy, address, ethnicity, medicalcondition, age);
+					Main.inputPatient(p);
+					frontPatientHome f = new frontPatientHome(p);
+					f.setVisible(true);
+					setVisible(false);
+				}
 				
 				
 			}
 		});
-		btnContinue.setBounds(188, 540, 97, 25);
-		contentPane.add(btnContinue);
+		continueButton.setBounds(279, 699, 97, 25);
+		contentPane.add(continueButton);
 		
-		textField = new JTextField();
-		textField.setBounds(242, 316, 164, 22);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "M", "F"}));
-		comboBox.setBounds(242, 379, 37, 22);
-		contentPane.add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "White ", "Black or African American", "American Indian and Alaska Native", "Asian", "Native Hawaiian and Other Pacific Highlander", "Other"}));
-		comboBox_1.setBounds(242, 442, 164, 22);
-		contentPane.add(comboBox_1);
-		
-		JLabel lblmmddyyyy = new JLabel("(MM/DD/YYYY)");
-		lblmmddyyyy.setBounds(73, 316, 200, 50);
-		contentPane.add(lblmmddyyyy);
+		JButton btnGoBack = new JButton("Go Back");
+		btnGoBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Register f = new Register();
+				f.setVisible(true);
+				setVisible(false);
+			}
+		});
+		btnGoBack.setBounds(103, 697, 117, 29);
+		contentPane.add(btnGoBack);
 	}
 }

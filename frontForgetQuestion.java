@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -16,8 +17,8 @@ public class frontForgetQuestion extends JFrame {
 	private JPanel contentPane;
 	private JTextField answerField;
 
-	public frontForgetQuestion(String question, String answer, String password) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public frontForgetQuestion(int question, String answer, String password) {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -28,7 +29,15 @@ public class frontForgetQuestion extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel questionLabel = new JLabel(question);
+		String temp="";
+		if(question==1) {
+			temp="What is your favorite food?";
+		}else if(question==2) {
+			temp="What is your mother's maiden name?";
+		}else {
+			temp="What was your highschool mascot?";
+		}
+		JLabel questionLabel = new JLabel(temp);
 		questionLabel.setVerticalAlignment(SwingConstants.TOP);
 		questionLabel.setBounds(57, 32, 316, 49);
 		panel.add(questionLabel);
@@ -38,14 +47,13 @@ public class frontForgetQuestion extends JFrame {
 		panel.add(answerField);
 		answerField.setColumns(10);
 		
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Submit");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((answerField.getText()).equals(answer)) {
 					questionLabel.setText("Your password is: "+ password);
 				}else {
-					ErrorFrame err = new ErrorFrame();
-					err.setVisible(true);
+					JOptionPane.showMessageDialog(null, "Try again!");
 				}
 			}
 		});

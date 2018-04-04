@@ -1,46 +1,40 @@
 
 public class patient extends user{
 	
-	private String currentMedicalCondition, allergy, age, gender, address, ethnicity;
+	private String allergy, address, ethnicity, medicalcondition;
+	private int age, userkey;
 	
-	public patient(String email, String password, String name, String securityQuestion, String securityAnswer, int key, Boolean type, String allergy, String currentMedicalCondition, String age, String gender, String address, String ethnicity, String contact) {
-		super(email, password, name, securityQuestion, securityAnswer, key, type, contact);
-		this.currentMedicalCondition = currentMedicalCondition;
+	public patient(String contact, String email, String firstname, String lastname, String password, String securityanswer, String type, String username, int securityint, int userkey, String allergy, String address, String ethnicity, String medicalcondition, int age) {
+		super(contact, email, firstname, lastname, password, securityanswer, type, username, securityint, userkey);
 		this.allergy = allergy;
-		this.age = age;
-		this.gender = gender;
 		this.address = address;
 		this.ethnicity = ethnicity;
+		this.medicalcondition = medicalcondition;
+		this.age = age;
+		this.userkey = userkey;
 	}
 	
-	public void CreateTicket() {
+	public static void CreateTicket(int num) {
+		frontCreateTicket f = new frontCreateTicket(num);
+		f.setVisible(true);
+	}
+	
+	public static void EditTicket() {
 		
 	}
 	
-	public void EditTicket() {
-		
-	}
-	
-	public void ViewDoctorInfo() {
+	public static void ViewDoctorInfo() {
 		
 	}
 	
 //-------------------------------------------------------------------------------
 	
-	public String getCurrentMedicalCondition() {
-		return currentMedicalCondition;
-	}
-	
 	public String getAllergy() {
 		return allergy;
 	}
 	
-	public String getAge() {
-		return age;
-	}
-	
-	public String getGender() {
-		return gender;
+	public String getMedicalCondition() {
+		return medicalcondition;
 	}
 	
 	public String getAddress() {
@@ -51,22 +45,18 @@ public class patient extends user{
 		return ethnicity;
 	}
 	
+	public int getAge() {
+		return age;
+	}
+	
+	public int getUserKey() {
+		return userkey;
+	}
+	
 //--------------------------------------------------------------------------------
 
-	public void setCurrentMedicalCondition(String currentMedicalCondition) {
-		this.currentMedicalCondition = currentMedicalCondition;
-	}
-	
 	public void setAllergy(String allergy) {
 		this.allergy = allergy;
-	}
-	
-	public void setAge(String age) {
-		this.age = age;
-	}
-	
-	public void setGender(String gender) {
-		this.gender = gender;
 	}
 	
 	public void setAddress(String address) {
@@ -75,6 +65,18 @@ public class patient extends user{
 	
 	public void setEthnicity(String ethnicity) {
 		this.ethnicity = ethnicity;
+	}
+	
+	public void setMedicalCondition(String medicalcondition) {
+		this.medicalcondition = medicalcondition;
+	}
+	
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
+	public void setUserKey(int userkey) {
+		this.userkey = userkey;
 	}
 	
 }

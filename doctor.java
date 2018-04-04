@@ -1,16 +1,18 @@
 
 public class doctor extends user{
 	
-	private String insurance;
-	private String profession;
-	private int workTime;
+	private String insurance, specialty, workstart, workend;
+	private int userkey;
 	
-	public doctor(String email, String password, String name, String securityQuestion, String securityAnswer, int key, Boolean type, String insurance, String profession, int workTime, String contact) {
-		super(email, password, name, securityQuestion, securityAnswer, key, type, contact);
+	public doctor(String contact, String email, String firstname, String lastname, String password, String securityanswer, String type, String username, int securityint, int userkey, String insurance, String specialty, String workstart, String workend){
+		super(contact, email, firstname, lastname, password, securityanswer, type, username, securityint, userkey);
 		this.insurance = insurance;
-		this.profession = profession;
-		this.workTime = workTime;
+		this.specialty = specialty;
+		this.workstart = workstart;
+		this.workend = workend;
+		this.userkey = userkey;
 	}
+	
 	
 	public void ChooseTicket() {
 		
@@ -26,12 +28,20 @@ public class doctor extends user{
 		return insurance;
 	}
 	
-	public String getProfession() {
-		return profession;
+	public String getSpecialty() {
+		return specialty;
 	}
 	
-	public int workTime() {
-		return workTime;
+	public String getWorkStart() {
+		return workstart;
+	}
+	
+	public String getWorkEnd() {
+		return workend;
+	}
+	
+	public int getUserKey() {
+		return userkey;
 	}
 	
 //-------------------------------------------------------------------------------
@@ -40,12 +50,20 @@ public class doctor extends user{
 		this.insurance = insurance;
 	}
 	
-	public void setProfession(String profession) {
-		this.profession = profession;
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
 	}
 	
-	public void setWorkTime(int workTime) {
-		this.workTime = workTime;
+	public void setWorkStart(String workstart) {
+		this.workstart = workstart;
+	}
+	
+	public void setWorkEnd(String workend) {
+		this.workend = workend;
+	}
+	
+	public void setUserKey(int userkey) {
+		this.userkey = userkey;
 	}
 	
 
