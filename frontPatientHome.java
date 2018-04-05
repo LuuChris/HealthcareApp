@@ -48,7 +48,7 @@ public class frontPatientHome extends JFrame {
 				patient.CreateTicket(p.getUserKey());
 			}
 		});
-		createButton.setBounds(137, 341, 148, 48);
+		createButton.setBounds(69, 341, 148, 48);
 		panel.add(createButton);
 		
 		JButton viewButton = new JButton("View Doctor Info");
@@ -58,7 +58,7 @@ public class frontPatientHome extends JFrame {
 				f.setVisible(true);
 			}
 		});
-		viewButton.setBounds(344, 341, 148, 48);
+		viewButton.setBounds(484, 341, 148, 48);
 		panel.add(viewButton);
 		
 		JButton btnNewButton = new JButton("Logout");
@@ -82,5 +82,18 @@ public class frontPatientHome extends JFrame {
 		txtrDescription.setText("Account Information\n"+"Contact#: "+p.contact+"\nEmail: "+p.email+"\nUsername: "+p.username+"\nPassword: "+p.password+"\nType: "+p.type+"\nUserkey: "+p.getUserKey()+"\nAllergies: "+p.getAllergy()+"\nAddress: "+p.getAddress());
 		txtrDescription.append("\nMedical Conditions: "+p.getMedicalCondition()+"\nAge: "+p.getAge());
 		txtrDescription.setEditable(false);
+		
+		JButton editticketButton = new JButton("Edit Ticket");
+		editticketButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				patient.EditTicket(p.getUserKey());
+			}
+		});
+		editticketButton.setBounds(276, 341, 148, 48);
+		panel.add(editticketButton);
+		
+		JButton editaccountButton = new JButton("Edit Account");
+		editaccountButton.setBounds(480, 150, 152, 58);
+		panel.add(editaccountButton);
 	}
 }

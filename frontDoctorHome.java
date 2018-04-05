@@ -71,6 +71,8 @@ public class frontDoctorHome extends JFrame {
 		JLabel lblName = new JLabel("Name:");
 		
 		JLabel nameLabel = new JLabel(d.getFirstName()+" "+d.getLastName());
+		
+		JButton editacountButton = new JButton("Edit Account");
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -81,15 +83,19 @@ public class frontDoctorHome extends JFrame {
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE)
 							.addGap(150)
 							.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 160, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(lblName)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
-							.addGroup(gl_panel.createSequentialGroup()
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(lblName)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(nameLabel, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panel.createSequentialGroup()
+									.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(editacountButton, GroupLayout.PREFERRED_SIZE, 145, GroupLayout.PREFERRED_SIZE)
+										.addComponent(btnLogOut, GroupLayout.PREFERRED_SIZE, 89, GroupLayout.PREFERRED_SIZE))))
+							.addPreferredGap(ComponentPlacement.RELATED)))
 					.addContainerGap(150, Short.MAX_VALUE))
 		);
 		gl_panel.setVerticalGroup(
@@ -101,13 +107,16 @@ public class frontDoctorHome extends JFrame {
 						.addComponent(nameLabel))
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnLogOut)
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(btnLogOut)
+							.addGap(39)
+							.addComponent(editacountButton, GroupLayout.PREFERRED_SIZE, 71, GroupLayout.PREFERRED_SIZE))
 						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 231, GroupLayout.PREFERRED_SIZE))
 					.addGap(32)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnNewButton_1, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
-					.addGap(86))
+					.addContainerGap(103, Short.MAX_VALUE))
 		);
 		
 		JTextArea txtrK = new JTextArea();

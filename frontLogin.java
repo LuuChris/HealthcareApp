@@ -18,44 +18,47 @@ public class frontLogin extends JFrame{
 	public frontLogin() {
 		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 466, 316);
+		setBounds(100, 100, 595, 406);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(98, 40, 255, 173);
+		panel_1.setBounds(59, 16, 482, 338);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel loginLabel = new JLabel("Login");
-		loginLabel.setBounds(98, 0, 58, 28);
+		JLabel loginLabel = new JLabel("Login Page");
+		loginLabel.setBounds(174, 0, 127, 41);
 		panel_1.add(loginLabel);
 		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		loginLabel.setFont(new Font("Helvetica", Font.PLAIN, 15));
+		loginLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
 		
 		JLabel usernameLabel = new JLabel("Username:");
-		usernameLabel.setBounds(0, 46, 107, 16);
+		usernameLabel.setBounds(38, 68, 107, 16);
 		panel_1.add(usernameLabel);
-		usernameLabel.setFont(new Font("Helvetica", Font.PLAIN, 13));
+		usernameLabel.setFont(new Font("Helvetica", Font.ITALIC, 15));
 		
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(0, 84, 61, 16);
+		passwordLabel.setBounds(38, 150, 141, 28);
 		panel_1.add(passwordLabel);
-		passwordLabel.setFont(new Font("Helvetica", Font.PLAIN, 13));
+		passwordLabel.setFont(new Font("Helvetica", Font.ITALIC, 15));
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(119, 40, 130, 26);
+		usernameField.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		usernameField.setBounds(35, 85, 370, 41);
 		panel_1.add(usernameField);
 		usernameField.setColumns(10);
 		
 		passwordField = new JTextField();
-		passwordField.setBounds(119, 78, 130, 26);
+		passwordField.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		passwordField.setBounds(38, 174, 364, 41);
 		panel_1.add(passwordField);
 		passwordField.setColumns(10);
 		
 		JButton loginButton = new JButton("Login");
+		loginButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = usernameField.getText();
@@ -83,10 +86,11 @@ public class frontLogin extends JFrame{
 			}
 		});
 		
-		loginButton.setBounds(0, 112, 117, 29);
+		loginButton.setBounds(38, 257, 173, 47);
 		panel_1.add(loginButton);
 		
 		JButton registerButton = new JButton("Register");
+		registerButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -94,7 +98,7 @@ public class frontLogin extends JFrame{
 			}
 		});
 		
-		registerButton.setBounds(132, 112, 117, 29);
+		registerButton.setBounds(232, 257, 173, 47);
 		panel_1.add(registerButton);
 		
 		JButton forgetButton = new JButton("Forget Password?");
@@ -104,7 +108,7 @@ public class frontLogin extends JFrame{
 			}
 		});
 		
-		forgetButton.setBounds(66, 146, 117, 16);
+		forgetButton.setBounds(159, 316, 117, 16);
 		panel_1.add(forgetButton);
 		forgetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
 	}

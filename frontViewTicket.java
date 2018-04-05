@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -52,6 +54,24 @@ public class frontViewTicket extends JFrame {
 		});
 		btnViewPatientInfo.setBounds(242, 207, 149, 29);
 		panel.add(btnViewPatientInfo);
+		
+		JButton btnNewButton = new JButton("Resolve Ticket");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(list.isSelectionEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nothing is selected!");
+				}else {
+					String ticketstring = list.getSelectedValue().toString().substring(11,16);
+					int ticketid = Integer.parseInt(ticketstring);
+					Main.deleteTicket(ticketid);
+					frontViewTicket f = new frontViewTicket(d);
+					f.setVisible(true);
+					setVisible(false);
+				}
+			}
+		});
+		btnNewButton.setBounds(24, 207, 137, 29);
+		panel.add(btnNewButton);
 	}
 }
 

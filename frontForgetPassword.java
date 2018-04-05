@@ -47,7 +47,7 @@ public class frontForgetPassword extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if(emailField.getText()!=null) {
 					try {
-						Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+						Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
 						Statement stmt = con.createStatement();
 						ResultSet res = stmt.executeQuery("select * from userTable");
 						Boolean temp=true;
