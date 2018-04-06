@@ -100,7 +100,7 @@ public class Register2 extends JFrame {
 		
 		JButton continueButton = new JButton("Continue");
 		continueButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) { 
 				String address = addressField.getText();
 				int age = Integer.parseInt(ageField.getText());
 				String ethnicity = (String) ethnicityBox.getSelectedItem();
@@ -112,7 +112,7 @@ public class Register2 extends JFrame {
 				if(medicalcondition.equals("")) {
 					medicalcondition="none";
 				}
-				if(address.length()>5 && age>0 && ethnicity.length()>1) {
+				if(address.matches("\\d{1,5}[A-z]*\\s?[A-z]+\\s?[A-z]*\\s?[A-z]*") && age>0 && ethnicity.length()>1) {
 					
 					patient p = new patient(contact, email, firstname, lastname, password, securityanswer, type, username, securityint, Main.generateUserkey(), allergy, address, ethnicity, medicalcondition, age);
 					Main.inputPatient(p);

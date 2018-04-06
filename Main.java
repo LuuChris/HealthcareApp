@@ -20,21 +20,6 @@ public class Main {
 				}
 			}
 		});
-	/*	
-		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			Statement stmt = con.createStatement();
-			ResultSet res = stmt.executeQuery("select * from userTable");
-			while (res.next()) {
-				System.out.println(res.getString("firstname"));
-			}
-			
-		}
-		catch(Exception exc) {
-			System.out.println("ERRORRR");
-			exc.printStackTrace();
-		}
-	*/
 		
 	}
 	public static Boolean authenticate(String username, String password) {
@@ -517,7 +502,7 @@ public class Main {
 			stmt.setString(1, description);
 			stmt.setInt(2, ticketid);
 			stmt.executeUpdate();
-			PreparedStatement stm = con.prepareStatement("update ticketTable set datecreate = ? where ticketid = ?");
+			PreparedStatement stm = con.prepareStatement("update ticketTable set datecreated = ? where ticketid = ?");
 			stm.setString(1, date);
 			stm.setInt(2, ticketid);
 			stm.executeUpdate();
@@ -546,4 +531,101 @@ public class Main {
 			exc.printStackTrace();
 		}
 	}
+	
+	public static void editPatient(int patientkey, String password, String allergy, String address, String medicalcondition) {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			PreparedStatement stmt = con.prepareStatement("update userTable set password = ? where userkey = ?");
+			stmt.setString(1, password);
+			stmt.setInt(2, patientkey);
+			stmt.executeUpdate();
+			PreparedStatement stm = con.prepareStatement("update patientTable set allergy = ?, address = ?, medicalcondition = ? where userkey = ?");
+			stm.setString(1, allergy);
+			stm.setString(2, address);
+			stm.setString(3, medicalcondition);
+			stm.setInt(4, patientkey);
+			stm.executeUpdate();
+			stmt.close();
+			stm.close();
+			con.close();
+		}
+		catch(Exception exc) {
+			System.out.println("ERRORRR");
+			exc.printStackTrace();
+		}
+	}
+	
+	public static void deletePatient(int userkey) {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			PreparedStatement stmt = con.prepareStatement("delete from userTable where userkey = ?");
+			stmt.setInt(1, userkey);
+			stmt.executeUpdate();
+			PreparedStatement stm = con.prepareStatement("delete from patientTable where userkey = ?");
+			stm.setInt(1, userkey);
+			stm.executeUpdate();
+			PreparedStatement st = con.prepareStatement("delete from ticketTable where patientkey = ?");
+			st.setInt(1, userkey);
+			st.executeUpdate();
+			stmt.close();
+			stm.close();
+			st.close();
+			con.close();
+		}
+		catch(Exception exc) {
+			System.out.println("ERRORRR");
+			exc.printStackTrace();
+		}
+	}
+
+	
+	public static void editDoctor(int doctorkey, String password, String insurance, String specialty, String workstart, String workend) {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			PreparedStatement stmt = con.prepareStatement("update userTable set password = ? where userkey = ?");
+			stmt.setString(1, password);
+			stmt.setInt(2, doctorkey);
+			stmt.executeUpdate();
+			PreparedStatement stm = con.prepareStatement("update doctorTable set insurance = ?, specialty = ?, workstart = ?, workend = ? where userkey = ?");
+			stm.setString(1, insurance);
+			stm.setString(2, specialty);
+			stm.setString(3, workstart);
+			stm.setString(4, workend);
+			stm.setInt(5, doctorkey);
+			stm.executeUpdate();
+			stmt.close();
+			stm.close();
+			con.close();
+		}
+		catch(Exception exc) {
+			System.out.println("ERRORRR");
+			exc.printStackTrace();
+		}
+		
+	}
+	
+	public static void deleteDoctor(int userkey) {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			PreparedStatement stmt = con.prepareStatement("delete from userTable where userkey = ?");
+			stmt.setInt(1, userkey);
+			stmt.executeUpdate();
+			PreparedStatement stm = con.prepareStatement("delete from doctorTable where userkey = ?");
+			stm.setInt(1, userkey);
+			stm.executeUpdate();
+			PreparedStatement st = con.prepareStatement("update ticketTable set doctorkey = ? where doctorkey = ?");
+			st.setInt(1, -1);
+			st.setInt(2, userkey);
+			st.executeUpdate();
+			stmt.close();
+			stm.close();
+			st.close();
+			con.close();
+		}
+		catch(Exception exc) {
+			System.out.println("ERRORRR");
+			exc.printStackTrace();
+		}
+	}
+	
 }

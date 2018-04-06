@@ -93,16 +93,19 @@ public class frontEditTicket2 extends JFrame {
 		JButton resubmitbutton = new JButton("Resubmit");
 		resubmitbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(descriptiontextField.getText().length()>=10 && descriptiontextField.getText().length()<50) {
+				if(descriptiontextField.getText().length()>=10 && descriptiontextField.getText().length()<200) {
 					Main.changeTicketDescription( ticketid, descriptiontextField.getText() , dateLabel.getText() );
+					frontEditTicket f = new frontEditTicket(patientkey);
+					f.setVisible(true);
+					setVisible(false);
 				}
 				
 				if(descriptiontextField.getText().length()<10) {
 					JOptionPane.showMessageDialog(null, "Description must be at least 10 characters.");
 				}
 				
-				if(descriptiontextField.getText().length()>50) {
-					JOptionPane.showMessageDialog(null, "Description must be below 50 characters.");
+				if(descriptiontextField.getText().length()>200) {
+					JOptionPane.showMessageDialog(null, "Description must be below 200 characters.");
 				}
 			}
 		});

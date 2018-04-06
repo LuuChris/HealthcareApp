@@ -26,8 +26,7 @@ public class user {
 		f.setVisible(true);
 	}
 	
-	public static void Login(String username, String password) {
-		
+	public static void Login() {
 	}
 	
 	public static void Logout() {

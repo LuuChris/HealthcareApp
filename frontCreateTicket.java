@@ -64,7 +64,7 @@ public class frontCreateTicket extends JFrame {
 		JButton createButton = new JButton("Submit");
 		createButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(descriptionField.getText().length()>=10 && descriptionField.getText().length()<50) {
+				if(descriptionField.getText().length()>=10 && descriptionField.getText().length()<200) {
 					ticket t = new ticket(ticketid, date, descriptionField.getText(), userkey, -1);
 					Main.inputTicket(t);
 					setVisible(false);
@@ -72,8 +72,8 @@ public class frontCreateTicket extends JFrame {
 				if(descriptionField.getText().length()<10) {
 					JOptionPane.showMessageDialog(null, "Description must be at least 10 characters.");
 				}
-				if(descriptionField.getText().length()>50) {
-					JOptionPane.showMessageDialog(null, "Description must be below 50 characters.");
+				if(descriptionField.getText().length()>200) {
+					JOptionPane.showMessageDialog(null, "Description must be below 200 characters.");
 				}
 			}
 		});

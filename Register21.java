@@ -78,11 +78,11 @@ public class Register21 extends JFrame {
 				if(workend.equals("")) {
 					workend = "none";
 				}
-				if(workstart.length()>4 || workend.length()>4) {
+				if(!workstart.matches("[0-2]\\d{3}") || !workend.matches("[0-2]\\d{3}")) {
 					JOptionPane.showMessageDialog(null, "Enter workstart/workend times in military time (4 numbers)");
 				}
 				
-				if(specialty.length()!=0 && workstart.length()<=4 && workend.length()<=4) {
+				if( specialty.length()>1 && (workstart.matches("[0-2]\\d{3}") || workstart.equals("none")) && (workend.matches("[0-2]\\d{3}") || workend.equals("none"))) {
 					doctor d = new doctor(contact, email, firstname, lastname, password, securityanswer, type, username, securityint, Main.generateUserkey(), insurance, specialty, workstart, workend);
 					Main.inputDoctor(d);
 					frontDoctorHome f = new frontDoctorHome(d);

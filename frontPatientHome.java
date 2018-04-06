@@ -93,6 +93,13 @@ public class frontPatientHome extends JFrame {
 		panel.add(editticketButton);
 		
 		JButton editaccountButton = new JButton("Edit Account");
+		editaccountButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frontEditPatient f = new frontEditPatient(p);
+				f.setVisible(true);
+				setVisible(false);
+			}
+		});
 		editaccountButton.setBounds(480, 150, 152, 58);
 		panel.add(editaccountButton);
 	}

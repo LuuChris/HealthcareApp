@@ -19,7 +19,9 @@ public class patient extends user{
 		f.setVisible(true);
 	}
 	
-	public static void EditTicket() {
+	public static void EditTicket(int patientkey) {
+		frontEditTicket f = new frontEditTicket(patientkey);
+		f.setVisible(true);
 		
 	}
 	
