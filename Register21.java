@@ -72,17 +72,22 @@ public class Register21 extends JFrame {
 				if(insurance.equals("")) {
 					insurance = "none";
 				}
+				if(specialty.length()==0) {
+					JOptionPane.showMessageDialog(null, "Must enter a specialty.");
+				}else if(  !(workstart.matches("[0-2]{1}[0-9]{3}") || workstart.equals("")) ) {
+					JOptionPane.showMessageDialog(null, "Enter workstart times in military time (4 numbers)");
+				}else if( !(workend.matches("[0-2]{1}[0-9]{3}") || workend.equals("") ) ) {
+					JOptionPane.showMessageDialog(null, "Enter workend times in military time (4 numbers)");
+				}
+					
 				if(workstart.equals("")) {
 					workstart = "none";
 				}
 				if(workend.equals("")) {
 					workend = "none";
 				}
-				if(!workstart.matches("[0-2]\\d{3}") || !workend.matches("[0-2]\\d{3}")) {
-					JOptionPane.showMessageDialog(null, "Enter workstart/workend times in military time (4 numbers)");
-				}
 				
-				if( specialty.length()>1 && (workstart.matches("[0-2]\\d{3}") || workstart.equals("none")) && (workend.matches("[0-2]\\d{3}") || workend.equals("none"))) {
+				if( specialty.length()>1 && (workstart.matches("[0-2]{1}[0-9]{3}") || workstart.equals("none")) && (workend.matches("[0-2]{1}[0-9]{3}") || workend.equals("none"))) {
 					doctor d = new doctor(contact, email, firstname, lastname, password, securityanswer, type, username, securityint, Main.generateUserkey(), insurance, specialty, workstart, workend);
 					Main.inputDoctor(d);
 					frontDoctorHome f = new frontDoctorHome(d);

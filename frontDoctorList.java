@@ -59,7 +59,7 @@ public class frontDoctorList extends JFrame {
 		scrollPane.setViewportView(doctorArea);
 		
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			Statement stm = con.createStatement();
 			Statement st = con.createStatement();

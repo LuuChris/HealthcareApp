@@ -172,12 +172,12 @@ public class frontEditDoctor extends JFrame {
 						JOptionPane.showMessageDialog(null, "New password must be more than 5 characters long.");
 					}else if(!np.equals(rp)) {
 						JOptionPane.showMessageDialog(null, "New password must match reentered password.");
-					}else if(sp.length()<2) {
+					}else if(sp.length()<1) {
 						JOptionPane.showMessageDialog(null, "Specialty is invalid.");
-					}else if( !ws.matches("[0-2]\\d{3}") || !ws.equals("none") || !ws.equals("") ) {
-						JOptionPane.showMessageDialog(null, "Work start is invalid.(Must be in military time)");
-					}else if( !we.matches("[0-2]\\d{3}") || !we.equals("none") || !we.equals("") ) {
-						JOptionPane.showMessageDialog(null, "Work end is invalid.(Must be in military time)");
+					}else if( !(ws.matches("[0-2]\\d{3}") || ws.equals("none") || ws.equals("") ) ) {
+						JOptionPane.showMessageDialog(null, "Work start is invalid.(Check if it's military time or blank)");
+					}else if( !(we.matches("[0-2]\\d{3}") || we.equals("none") || we.equals("") ) ) {
+						JOptionPane.showMessageDialog(null, "Work end is invalid.(Check if it's military time or blank)");
 					}else {
 						Main.editDoctor(d.getUserKey(), np, in, sp, ws, we);
 					}

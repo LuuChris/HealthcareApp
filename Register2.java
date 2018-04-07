@@ -11,6 +11,7 @@ import javax.swing.SpinnerDateModel;
 import java.util.Date;
 import java.util.Calendar;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.JScrollBar;
@@ -22,7 +23,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
-
 
 public class Register2 extends JFrame {
 
@@ -102,10 +102,21 @@ public class Register2 extends JFrame {
 		continueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) { 
 				String address = addressField.getText();
-				int age = Integer.parseInt(ageField.getText());
+				String ageS = ageField.getText();
 				String ethnicity = (String) ethnicityBox.getSelectedItem();
+				int age=0;
 				String allergy = allergyField.getText();
 				String medicalcondition = conditionField.getText();
+				if(!address.matches("\\d{1,5}[A-z]*\\s?[A-z]+\\s?[A-z]*\\s?[A-z]*")) {
+					JOptionPane.showMessageDialog(null, "Address is not valid.");
+				}else if(ageS.equals("") || !ageS.matches("[1-9]+[0-9]*") || Integer.parseInt(ageS)<1) {
+					JOptionPane.showMessageDialog(null, "Age is not valid.");
+				}else if(ethnicity.equals("")) {
+					JOptionPane.showMessageDialog(null, "Must choose an ethnicity.");
+				}else {
+					age = Integer.parseInt(ageS);
+				}
+				
 				if(allergy.equals("")) {
 					allergy="none";
 				}
@@ -137,5 +148,13 @@ public class Register2 extends JFrame {
 		});
 		btnGoBack.setBounds(103, 697, 117, 29);
 		contentPane.add(btnGoBack);
+		
+		JLabel lblNewLabel = new JLabel("(If none, leave blank)");
+		lblNewLabel.setBounds(106, 496, 131, 16);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("(If none, leave blank)");
+		lblNewLabel_1.setBounds(103, 597, 142, 16);
+		contentPane.add(lblNewLabel_1);
 	}
 }

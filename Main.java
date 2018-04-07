@@ -24,7 +24,7 @@ public class Main {
 	}
 	public static Boolean authenticate(String username, String password) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
 			String u;
@@ -46,7 +46,7 @@ public class Main {
 	
 	public static String check(String username, String password) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
 			while (res.next()) {
@@ -65,8 +65,8 @@ public class Main {
 	
 	public static patient pcheck(String username, String password) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			Statement stm = conn.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
@@ -114,8 +114,8 @@ public class Main {
 	
 	public static doctor dcheck(String username, String password) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			Statement stm = conn.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
@@ -158,7 +158,7 @@ public class Main {
 	
 	public static Boolean checkUser(String username, String email) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
 			Boolean user = true;
@@ -193,8 +193,8 @@ public class Main {
 		Random rand = new Random();
 		int  n = rand.nextInt(99999) + 1;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			Statement stm = conn.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
@@ -220,8 +220,8 @@ public class Main {
 		Random rand = new Random();
 		int  n = rand.nextInt(99999) + 1;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			Statement stm = conn.createStatement();
 			ResultSet res = stmt.executeQuery("select * from ticketTable");
@@ -245,7 +245,7 @@ public class Main {
 	
 	public static void inputPatient(patient p) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.userTable(contact,email,firstname,lastname,password,securityanswer,type,username,securityint,userkey) values(?,?,?,?,?,?,?,?,?,?)");
 			stmt.setString(1, p.getContact());
 			stmt.setString(2, p.getEmail());
@@ -267,7 +267,7 @@ public class Main {
 			exc.printStackTrace();
 		}
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.patientTable(allergy,address,ethnicity,medicalcondition,age,userkey) values (?,?,?,?,?,?)");
 			stmt.setString(1, p.getAllergy());
 			stmt.setString(2, p.getAddress());
@@ -289,8 +289,8 @@ public class Main {
 	
 	public static void inputDoctor(doctor d) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.userTable(contact,email,firstname,lastname,password,securityanswer,type,username,securityint,userkey) values(?,?,?,?,?,?,?,?,?,?)");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO userTable(contact,email,firstname,lastname,password,securityanswer,type,username,securityint,userkey) values(?,?,?,?,?,?,?,?,?,?)");
 			stmt.setString(1, d.getContact());
 			stmt.setString(2, d.getEmail());
 			stmt.setString(3, d.getFirstName());
@@ -312,8 +312,8 @@ public class Main {
 			exc.printStackTrace();
 		}
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.doctorTable(insurance,specialty,workstart,workend,userkey) values (?,?,?,?,?)");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO doctorTable(insurance,specialty,workstart,workend,userkey) values (?,?,?,?,?)");
 			stmt.setString(1, d.getInsurance());
 			stmt.setString(2, d.getSpecialty());
 			stmt.setString(3, d.getWorkStart());
@@ -333,8 +333,8 @@ public class Main {
 	
 	public static void inputTicket(ticket t){
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
-			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.ticketTable(ticketid, datecreated, description, doctorkey, patientkey) values (?,?,?,?,?)");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO ticketTable(ticketid, datecreated, description, doctorkey, patientkey) values (?,?,?,?,?)");
 			stmt.setInt(1, t.getTicketID());
 			stmt.setString(2, t.getDateCreated());
 			stmt.setString(3, t.getDescription());
@@ -355,7 +355,7 @@ public class Main {
 		int count=0;
 		String[] s = null;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from ticketTable");
 			while (res.next()) {
@@ -384,7 +384,7 @@ public class Main {
 	
 	public static void addDoctorToTicket(int ticketid, int doctorkey) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("update ticketTable set doctorkey = ? where ticketid = ?");
 			stmt.setInt(1, doctorkey);
 			stmt.setInt(2, ticketid);
@@ -403,7 +403,7 @@ public class Main {
 		int count=0;
 		String[] s = null;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from ticketTable");
 			while (res.next()) {
@@ -432,7 +432,7 @@ public class Main {
 	
 	public static void viewPatientInfo(int userkey) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			Statement stm = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from patientTable");
@@ -468,7 +468,7 @@ public class Main {
 		int count=0;
 		String[] s = null;
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from ticketTable");
 			while (res.next()) {
@@ -497,7 +497,7 @@ public class Main {
 	
 	public static void changeTicketDescription(int ticketid, String description, String date) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("update ticketTable set description = ? where ticketid = ?");
 			stmt.setString(1, description);
 			stmt.setInt(2, ticketid);
@@ -519,7 +519,7 @@ public class Main {
 	
 	public static void deleteTicket(int ticketid) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("delete from ticketTable where ticketid = ?");
 			stmt.setInt(1, ticketid);
 			stmt.executeUpdate();
@@ -534,7 +534,7 @@ public class Main {
 	
 	public static void editPatient(int patientkey, String password, String allergy, String address, String medicalcondition) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("update userTable set password = ? where userkey = ?");
 			stmt.setString(1, password);
 			stmt.setInt(2, patientkey);
@@ -557,7 +557,7 @@ public class Main {
 	
 	public static void deletePatient(int userkey) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("delete from userTable where userkey = ?");
 			stmt.setInt(1, userkey);
 			stmt.executeUpdate();
@@ -581,7 +581,7 @@ public class Main {
 	
 	public static void editDoctor(int doctorkey, String password, String insurance, String specialty, String workstart, String workend) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("update userTable set password = ? where userkey = ?");
 			stmt.setString(1, password);
 			stmt.setInt(2, doctorkey);
@@ -606,7 +606,7 @@ public class Main {
 	
 	public static void deleteDoctor(int userkey) {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mednet?useSSL=false", "root", "password");
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			PreparedStatement stmt = con.prepareStatement("delete from userTable where userkey = ?");
 			stmt.setInt(1, userkey);
 			stmt.executeUpdate();
