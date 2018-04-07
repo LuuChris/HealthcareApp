@@ -1,6 +1,6 @@
 import java.sql.*;
 
-public class Connect {
+public class ConnectionTest {
 	
 	public static void main(String[] args) {
 		try {
