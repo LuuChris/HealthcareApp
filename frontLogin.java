@@ -1,3 +1,4 @@
+package medpack;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -18,47 +19,47 @@ public class frontLogin extends JFrame{
 	public frontLogin() {
 		setTitle("Login Page");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 595, 406);
+		setBounds(100, 100, 794, 540);
 		
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(59, 16, 482, 338);
+		panel_1.setBounds(58, 21, 685, 449);
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel loginLabel = new JLabel("Login Page");
-		loginLabel.setBounds(174, 0, 127, 41);
+		loginLabel.setBounds(251, 6, 178, 41);
 		panel_1.add(loginLabel);
 		loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		loginLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
+		loginLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
 		
 		JLabel usernameLabel = new JLabel("Username:");
-		usernameLabel.setBounds(38, 68, 107, 16);
+		usernameLabel.setBounds(63, 67, 107, 16);
 		panel_1.add(usernameLabel);
-		usernameLabel.setFont(new Font("Helvetica", Font.ITALIC, 15));
+		usernameLabel.setFont(new Font("Helvetica", Font.ITALIC, 22));
 		
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(38, 150, 141, 28);
+		passwordLabel.setBounds(63, 184, 141, 28);
 		panel_1.add(passwordLabel);
-		passwordLabel.setFont(new Font("Helvetica", Font.ITALIC, 15));
+		passwordLabel.setFont(new Font("Helvetica", Font.ITALIC, 22));
 		
 		usernameField = new JTextField();
-		usernameField.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		usernameField.setBounds(35, 85, 370, 41);
+		usernameField.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		usernameField.setBounds(63, 96, 557, 47);
 		panel_1.add(usernameField);
 		usernameField.setColumns(10);
 		
 		passwordField = new JTextField();
-		passwordField.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
-		passwordField.setBounds(38, 174, 364, 41);
+		passwordField.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		passwordField.setBounds(63, 224, 557, 47);
 		panel_1.add(passwordField);
 		passwordField.setColumns(10);
 		
 		JButton loginButton = new JButton("Login");
-		loginButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		loginButton.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = usernameField.getText();
@@ -69,6 +70,7 @@ public class frontLogin extends JFrame{
 						patient p = Main.pcheck(username, password);
 						frontPatientHome f = new frontPatientHome(p);
 						f.setVisible(true);
+						f.setResizable(false);
 						setVisible(false);
 					}
 					
@@ -76,6 +78,7 @@ public class frontLogin extends JFrame{
 						doctor d = Main.dcheck(username, password);
 						frontDoctorHome f = new frontDoctorHome(d);
 						f.setVisible(true);
+						f.setResizable(false);
 						setVisible(false);
 					}
 				}
@@ -86,11 +89,11 @@ public class frontLogin extends JFrame{
 			}
 		});
 		
-		loginButton.setBounds(38, 257, 173, 47);
+		loginButton.setBounds(107, 307, 201, 59);
 		panel_1.add(loginButton);
 		
 		JButton registerButton = new JButton("Register");
-		registerButton.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		registerButton.setFont(new Font("Lucida Grande", Font.PLAIN, 23));
 		registerButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -98,7 +101,7 @@ public class frontLogin extends JFrame{
 			}
 		});
 		
-		registerButton.setBounds(232, 257, 173, 47);
+		registerButton.setBounds(371, 307, 201, 59);
 		panel_1.add(registerButton);
 		
 		JButton forgetButton = new JButton("Forget Password?");
@@ -108,8 +111,8 @@ public class frontLogin extends JFrame{
 			}
 		});
 		
-		forgetButton.setBounds(159, 316, 117, 16);
+		forgetButton.setBounds(273, 378, 141, 21);
 		panel_1.add(forgetButton);
-		forgetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 10));
+		forgetButton.setFont(new Font("Lucida Grande", Font.PLAIN, 12));
 	}
 }

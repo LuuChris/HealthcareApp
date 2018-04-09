@@ -1,3 +1,4 @@
+package medpack;
 import java.awt.BorderLayout; 
 import java.awt.EventQueue;
 
@@ -130,14 +131,14 @@ public class Register extends JFrame {
 				int securityint = securityquestionComboBox.getSelectedIndex();
 				String securityanswer = securityanswerField.getText();
 				
-				if(patientRadioButton.isSelected() && contact.matches("[0-9]{10}") && usr.length()>0 && pwd.length()>4 && rpwd.length()>4 && !securityanswer.equals("") && securityint!=0 && Main.checkUser(usr,email) && (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,6}$")) ) {
+				if(patientRadioButton.isSelected() && contact.matches("[0-9]{10}") && usr.length()>0 && !usr.contains(" ") && pwd.length()>4 && pwd.equals(rpwd) && !securityanswer.equals("") && securityint!=0 && Main.checkUser(usr,email) && (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,6}$") && email.contains(" ")) ) {
 
 					Register2 f = new Register2(usr, pwd, fname, lname, contact, email, securityint, securityanswer, "0");
 					f.setVisible(true);
 					setVisible(false);
 				}
 				
-				if(doctorRadioButton.isSelected() && contact.matches("[0-9]{10}") && usr.length()>0 && pwd.length()>4 && rpwd.length()>4 && !securityanswer.equals("") && securityint!=0 && Main.checkUser(usr,email) && (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,6}$")) ) {
+				if(doctorRadioButton.isSelected() && contact.matches("[0-9]{10}") && usr.length()>0 && !usr.contains(" ") && pwd.length()>4 && pwd.equals(rpwd) && !securityanswer.equals("") && securityint!=0 && Main.checkUser(usr,email) && (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,6}$") && email.contains(" ")) ) {
 
 					Register21 f = new Register21(usr, pwd, fname, lname, contact, email, securityint, securityanswer, "1");
 					f.setVisible(true);
@@ -147,13 +148,15 @@ public class Register extends JFrame {
 
 				if (usr.length()==0||pwd.length()==0||rpwd.length()==0||securityanswer.length()==0||email.length()==0||fname.length()==0||lname.length()==0) {
 					JOptionPane.showMessageDialog(null, "All fields must be filled in!");
+				} else if(usr.contains(" ")) {
+					JOptionPane.showMessageDialog(null, "Username must have no blank spaces.");
 				} else if(pwd.equals(rpwd) == false) {
 					JOptionPane.showMessageDialog(null, "Passwords do not match!");
 				} else if (pwd.length()<5) {
 					JOptionPane.showMessageDialog(null, "Password is short.");
 				} else if(! (contact.matches("[0-9]{10}")) ) {
 					JOptionPane.showMessageDialog(null, "Contact# needs to be 10 digits(without any symbols).");
-				} else if(! (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$") )) {
+				} else if( (!email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$") ) || email.contains(" ") ) {
 					JOptionPane.showMessageDialog(null, "Invalid email.");
 				} else if(securityint==0) {
 					JOptionPane.showMessageDialog(null, "Choose a security question.");

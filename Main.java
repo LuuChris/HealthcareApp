@@ -1,3 +1,4 @@
+package medpack;
 import java.awt.EventQueue; 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Main {
 				try {
 					frontLogin frame = new frontLogin();
 					frame.setVisible(true);
+					frame.setResizable(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -22,6 +24,8 @@ public class Main {
 		});
 		
 	}
+	
+//frontLogin: Checks if a username or password already exists in the database
 	public static Boolean authenticate(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -33,9 +37,11 @@ public class Main {
 				u = res.getString("username");
 				p = res.getString("password");
 				if(u.equals(username) && p.equals(password) ) {
+					con.close();
 					return true;
 				}
 			}
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("Error!");
@@ -44,6 +50,7 @@ public class Main {
 		return false;
 	}
 	
+//frontLogin: Checks whether a user is of type patient or type doctor
 	public static String check(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -52,9 +59,11 @@ public class Main {
 			while (res.next()) {
 				if(res.getString("username").equals(username) && res.getString("password").equals(password)) {
 					String k = res.getString("type");
+					con.close();
 					return k;
 				}
 			}
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("Error!!");
@@ -62,13 +71,13 @@ public class Main {
 		}
 		return "ERROR";
 	}
-	
+
+//frontLogin: returns a patient object based on the username and password
 	public static patient pcheck(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
-			Statement stm = conn.createStatement();
+			Statement stm = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
 			ResultSet pat = stm.executeQuery("select * from patientTable");
 			String contact,email,firstname,lastname,pwd,securityanswer,type,usrname;
@@ -96,6 +105,7 @@ public class Main {
 								medicalcondition = pat.getString("medicalcondition");
 								age = pat.getInt("age");
 								patient p = new patient(contact, email, firstname, lastname, pwd, securityanswer, type, usrname, securityint, userkey, allergy, address, ethnicity, medicalcondition, age);
+								con.close();
 								return p;
 							}
 							
@@ -103,6 +113,7 @@ public class Main {
 						JOptionPane.showMessageDialog(null, "Error.");
 				}
 			}
+			con.close();
 		}
 				
 		catch(Exception exc) {
@@ -112,12 +123,12 @@ public class Main {
 		return null;
 	}
 	
+//frontLogin: returns a doctor object based on the username and password
 	public static doctor dcheck(String username, String password) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
-			Statement stm = conn.createStatement();
+			Statement stm = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
 			ResultSet doc = stm.executeQuery("select * from doctorTable");
 			while (res.next()) {
@@ -141,6 +152,7 @@ public class Main {
 								String workstart = doc.getString("workstart");
 								String workend = doc.getString("workend");
 								doctor d = new doctor(contact, email, firstname, lastname, pwd, securityanswer, type, usrname, securityint, userkey, insurance, specialty, workstart, workend);
+								con.close();
 								return d;
 							}
 							
@@ -148,6 +160,7 @@ public class Main {
 						JOptionPane.showMessageDialog(null, "Error..");
 				}
 			}
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("Error!!!!");
@@ -155,7 +168,8 @@ public class Main {
 		}
 		return null;
 	}
-	
+
+//Register to check if the username or email already exists in the system
 	public static Boolean checkUser(String username, String email) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -173,14 +187,18 @@ public class Main {
 			}
 			if(user==false && eml==false ){
 				JOptionPane.showMessageDialog(null, "Username and email already exists");
+				con.close();
 				return false;
 			}else if( eml==false ){
 				JOptionPane.showMessageDialog(null, "Email already exists");
+				con.close();
 				return false;
 			}else if( user==false ){
 				JOptionPane.showMessageDialog(null, "Username already exists");
+				con.close();
 				return false;
 			}
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("Error!!!!!");
@@ -188,15 +206,15 @@ public class Main {
 		}
 		return true;
 	}
-	
+
+//Register2/Register21: Generates a random userkey from 1-100000, that does not match any userkey in the database
 	public static int generateUserkey() {
 		Random rand = new Random();
 		int  n = rand.nextInt(99999) + 1;
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
-			Statement stm = conn.createStatement();
+			Statement stm = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from userTable");
 			ResultSet re = stm.executeQuery("select * from userTable");
 			int temp;
@@ -207,7 +225,7 @@ public class Main {
 					res.first();
 				}
 			}
-			
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("Error!!!!!!");
@@ -215,15 +233,15 @@ public class Main {
 		}
 		return n;
 	}
-	
+
+//Generates a random ticketkey from 1-100000, that does not match any current ticketkey in the database	
 	public static int generateTicketKey() {
 		Random rand = new Random();
 		int  n = rand.nextInt(99999) + 1;
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
-			Statement stm = conn.createStatement();
+			Statement stm = con.createStatement();
 			ResultSet res = stmt.executeQuery("select * from ticketTable");
 			ResultSet re = stm.executeQuery("select * from ticketTable");
 			int temp;
@@ -234,7 +252,7 @@ public class Main {
 					res.first();
 				}
 			}
-			
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("Error!!!!!!");
@@ -242,11 +260,12 @@ public class Main {
 		}
 		return n;
 	}
-	
+
+//Register2: Registers a new patient into the database
 	public static void inputPatient(patient p) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.userTable(contact,email,firstname,lastname,password,securityanswer,type,username,securityint,userkey) values(?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO userTable(contact,email,firstname,lastname,password,securityanswer,type,username,securityint,userkey) values(?,?,?,?,?,?,?,?,?,?)");
 			stmt.setString(1, p.getContact());
 			stmt.setString(2, p.getEmail());
 			stmt.setString(3, p.getFirstName());
@@ -258,7 +277,6 @@ public class Main {
 			stmt.setInt(9, p.getSecurityInt());
 			stmt.setInt(10, p.getUserKey());
 			stmt.executeUpdate();
-		//	con.commit();
 			stmt.close();
 			con.close();
 		}
@@ -268,7 +286,7 @@ public class Main {
 		}
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			PreparedStatement stmt = con.prepareStatement("INSERT INTO mednet.patientTable(allergy,address,ethnicity,medicalcondition,age,userkey) values (?,?,?,?,?,?)");
+			PreparedStatement stmt = con.prepareStatement("INSERT INTO patientTable(allergy,address,ethnicity,medicalcondition,age,userkey) values (?,?,?,?,?,?)");
 			stmt.setString(1, p.getAllergy());
 			stmt.setString(2, p.getAddress());
 			stmt.setString(3, p.getEthnicity());
@@ -276,7 +294,6 @@ public class Main {
 			stmt.setInt(5, p.getAge());
 			stmt.setInt(6, p.getUserKey());
 			stmt.executeUpdate();
-			//con.commit();
 			stmt.close();
 			con.close();
 		}
@@ -286,7 +303,7 @@ public class Main {
 		}
 	}
 		
-	
+//Register21: Registers a new doctor into the database	
 	public static void inputDoctor(doctor d) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -302,7 +319,6 @@ public class Main {
 			stmt.setInt(9, d.getSecurityInt());
 			stmt.setInt(10, d.getUserKey());
 			stmt.executeUpdate();
-			//con.commit();
 			stmt.close();
 			con.close();
 			
@@ -320,7 +336,6 @@ public class Main {
 			stmt.setString(4, d.getWorkEnd());
 			stmt.setInt(5, d.getUserKey());
 			stmt.executeUpdate();
-			//con.commit();
 			stmt.close();
 			con.close();
 		}
@@ -330,7 +345,8 @@ public class Main {
 		}
 		
 	}
-	
+
+//frontCreateTicket: Inputs a ticket object into the database
 	public static void inputTicket(ticket t){
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -341,7 +357,6 @@ public class Main {
 			stmt.setInt(4, t.getDoctorKey());
 			stmt.setInt(5, t.getPatientKey());
 			stmt.executeUpdate();
-			//con.commit();
 			stmt.close();
 			con.close();
 		}
@@ -373,7 +388,7 @@ public class Main {
 					temp=temp-1;
 				}
 			}
-			
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("ERRORRR");
@@ -381,7 +396,8 @@ public class Main {
 		}
 		return s;
 	}
-	
+
+//frontChooseTicket:
 	public static void addDoctorToTicket(int ticketid, int doctorkey) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -398,6 +414,7 @@ public class Main {
 			exc.printStackTrace();
 		}
 	}
+	
 	
 	public static String[] takenticketlist(int doctorkey) {
 		int count=0;
@@ -421,7 +438,7 @@ public class Main {
 					temp=temp-1;
 				}
 			}
-			
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("ERRORRR");
@@ -430,6 +447,7 @@ public class Main {
 		return s;
 	}
 	
+//frontViewTicket: Shows the patient information of the ticket that a doctor chooses
 	public static void viewPatientInfo(int userkey) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -456,13 +474,14 @@ public class Main {
 				}
 			}
 			JOptionPane.showMessageDialog(null, "Patient Name: "+firstname+" "+lastname+"\nContact#: "+contact+"\nEmail: "+email+"\nAge: "+age+"\nEthnicity: "+ethnicity+"\nAllergies: "+allergy+"\nMedical Conditions: "+medicalcondition);
-			
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("ERRORRR");
 			exc.printStackTrace();
 		}
 	}
+	
 	
 	public static String[] editticketlist(int userkey) {
 		int count=0;
@@ -486,7 +505,7 @@ public class Main {
 					temp=temp-1;
 				}
 			}
-			
+			con.close();
 		}
 		catch(Exception exc) {
 			System.out.println("ERRORRR");

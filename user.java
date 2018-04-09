@@ -1,3 +1,4 @@
+package medpack;
 import java.awt.Frame;
 import java.sql.*;
 
@@ -43,6 +44,7 @@ public class user {
 	
 	public static void ForgetPassword() {
 		frontForgetPassword f = new frontForgetPassword();
+		f.setResizable(false);
 		f.setVisible(true);
 	}
 	
