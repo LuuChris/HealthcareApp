@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout; 
 import java.awt.EventQueue;
 
@@ -30,8 +30,9 @@ public class Register extends JFrame {
 	private JTextField contactField;
 
 	public Register() {
+		setTitle("Register User");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 517, 656);
+		setBounds(100, 100, 586, 723);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -42,15 +43,18 @@ public class Register extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel questionLabel = new JLabel("Register for a doctor or patient?");
-		questionLabel.setBounds(103, 494, 232, 16);
+		questionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		questionLabel.setBounds(63, 543, 288, 27);
 		panel.add(questionLabel);
 		
 		JRadioButton doctorRadioButton = new JRadioButton("Doctor");
-		doctorRadioButton.setBounds(103, 536, 141, 23);
+		doctorRadioButton.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		doctorRadioButton.setBounds(73, 582, 141, 23);
 		panel.add(doctorRadioButton);
 		
 		JRadioButton patientRadioButton = new JRadioButton("Patient");
-		patientRadioButton.setBounds(267, 536, 141, 23);
+		patientRadioButton.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		patientRadioButton.setBounds(210, 582, 141, 23);
 		panel.add(patientRadioButton);
 		
 		ButtonGroup group = new ButtonGroup();
@@ -58,67 +62,79 @@ public class Register extends JFrame {
 		group.add(patientRadioButton);
 		
 		JButton gobackButton = new JButton("Go Back");
+		gobackButton.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		gobackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frontLogin f = new frontLogin();
 				f.setVisible(true);
+				f.setResizable(false);
 				setVisible(false);
 			}
 		});
-		gobackButton.setBounds(103, 571, 117, 29);
+		gobackButton.setBounds(15, 16, 76, 38);
 		panel.add(gobackButton);
 		
 		JLabel usernameLabel = new JLabel("Username:");
-		usernameLabel.setBounds(63, 80, 84, 16);
+		usernameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		usernameLabel.setBounds(63, 80, 109, 21);
 		panel.add(usernameLabel);
 		
 		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setBounds(63, 131, 84, 16);
+		passwordLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		passwordLabel.setBounds(63, 131, 109, 21);
 		panel.add(passwordLabel);
 		
 		usernameField = new JTextField();
-		usernameField.setBounds(205, 75, 222, 26);
+		usernameField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		usernameField.setBounds(307, 74, 232, 32);
 		panel.add(usernameField);
 		usernameField.setColumns(10);
 		
 		passwordField = new JTextField();
-		passwordField.setBounds(205, 126, 222, 26);
+		passwordField.setBounds(307, 127, 232, 32);
 		panel.add(passwordField);
 		passwordField.setColumns(10);
 		
 		JLabel label = new JLabel("Alpha Medical Registration");
-		label.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 19));
-		label.setBounds(63, 6, 315, 60);
+		label.setFont(new Font("Dialog", Font.BOLD | Font.ITALIC, 22));
+		label.setBounds(133, 6, 315, 60);
 		panel.add(label);
 		
 		JLabel securityquestionLabel = new JLabel("Security Question:");
-		securityquestionLabel.setBounds(63, 406, 125, 16);
+		securityquestionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		securityquestionLabel.setBounds(63, 442, 170, 23);
 		panel.add(securityquestionLabel);
 		
 		JLabel securityanswerLabel = new JLabel("Security Answer:");
-		securityanswerLabel.setBounds(63, 446, 125, 16);
+		securityanswerLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		securityanswerLabel.setBounds(63, 494, 156, 23);
 		panel.add(securityanswerLabel);
 		
 		JComboBox securityquestionComboBox = new JComboBox();
+		securityquestionComboBox.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		securityquestionComboBox.setModel(new DefaultComboBoxModel(new String[] {"", "What is your favorite food?", "What is your mother's maiden name?", "What was your highschool mascot?"}));
-		securityquestionComboBox.setBounds(205, 402, 222, 27);
+		securityquestionComboBox.setBounds(307, 438, 232, 32);
 		panel.add(securityquestionComboBox);
 		
 		securityanswerField = new JTextField();
-		securityanswerField.setBounds(205, 441, 222, 26);
+		securityanswerField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		securityanswerField.setBounds(307, 489, 232, 32);
 		panel.add(securityanswerField);
 		securityanswerField.setColumns(10);
 		
 		JLabel reenterLabel = new JLabel("Re-Enter Password:");
-		reenterLabel.setBounds(63, 189, 125, 16);
+		reenterLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		reenterLabel.setBounds(63, 185, 181, 21);
 		panel.add(reenterLabel);
 		
 		reenterField = new JTextField();
-		reenterField.setBounds(205, 184, 222, 26);
+		reenterField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		reenterField.setBounds(307, 179, 232, 32);
 		panel.add(reenterField);
 		reenterField.setColumns(10);
 		
 		JButton continueButton = new JButton("Continue");
+		continueButton.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		continueButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String usr = usernameField.getText();
@@ -131,20 +147,7 @@ public class Register extends JFrame {
 				int securityint = securityquestionComboBox.getSelectedIndex();
 				String securityanswer = securityanswerField.getText();
 				
-				if(patientRadioButton.isSelected() && contact.matches("[0-9]{10}") && usr.length()>0 && !usr.contains(" ") && pwd.length()>4 && pwd.equals(rpwd) && !securityanswer.equals("") && securityint!=0 && Main.checkUser(usr,email) && (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,6}$") && email.contains(" ")) ) {
-
-					Register2 f = new Register2(usr, pwd, fname, lname, contact, email, securityint, securityanswer, "0");
-					f.setVisible(true);
-					setVisible(false);
-				}
-				
-				if(doctorRadioButton.isSelected() && contact.matches("[0-9]{10}") && usr.length()>0 && !usr.contains(" ") && pwd.length()>4 && pwd.equals(rpwd) && !securityanswer.equals("") && securityint!=0 && Main.checkUser(usr,email) && (email.toLowerCase().matches("^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,6}$") && email.contains(" ")) ) {
-
-					Register21 f = new Register21(usr, pwd, fname, lname, contact, email, securityint, securityanswer, "1");
-					f.setVisible(true);
-					setVisible(false);
-					
-				}
+		
 
 				if (usr.length()==0||pwd.length()==0||rpwd.length()==0||securityanswer.length()==0||email.length()==0||fname.length()==0||lname.length()==0) {
 					JOptionPane.showMessageDialog(null, "All fields must be filled in!");
@@ -162,48 +165,72 @@ public class Register extends JFrame {
 					JOptionPane.showMessageDialog(null, "Choose a security question.");
 				} else if(patientRadioButton.isSelected()==false && doctorRadioButton.isSelected() ==false) {	
 					JOptionPane.showMessageDialog(null, "Register as a patient or doctor.");
+				}else {
+					if(patientRadioButton.isSelected() ) {
+						Register2 f = new Register2(usr, pwd, fname, lname, contact, email, securityint, securityanswer, "0");
+						f.setVisible(true);
+						f.setResizable(false);
+						setVisible(false);
+					}
+					if(doctorRadioButton.isSelected() ) {
+						Register21 f = new Register21(usr, pwd, fname, lname, contact, email, securityint, securityanswer, "1");
+						f.setVisible(true);
+						f.setResizable(false);
+						setVisible(false);
+					}
 				}
 				
 			}
 		});
-		continueButton.setBounds(267, 571, 117, 29);
+		continueButton.setBounds(386, 622, 141, 46);
 		panel.add(continueButton);
 		
 		JLabel emailLabel = new JLabel("Email:");
-		emailLabel.setBounds(63, 369, 61, 16);
+		emailLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		emailLabel.setBounds(63, 390, 83, 27);
 		panel.add(emailLabel);
 		
 		emailField = new JTextField();
-		emailField.setBounds(205, 364, 222, 26);
+		emailField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		emailField.setBounds(307, 387, 232, 32);
 		panel.add(emailField);
 		emailField.setColumns(10);
 		
 		JLabel firstnameLabel = new JLabel("First Name:");
-		firstnameLabel.setBounds(63, 238, 84, 16);
+		firstnameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		firstnameLabel.setBounds(63, 236, 181, 21);
 		panel.add(firstnameLabel);
 		
 		JLabel lastnameLabel = new JLabel("Last Name:");
-		lastnameLabel.setBounds(63, 282, 84, 16);
+		lastnameLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lastnameLabel.setBounds(63, 285, 125, 23);
 		panel.add(lastnameLabel);
 		
 		firstnameField = new JTextField();
-		firstnameField.setBounds(205, 233, 222, 26);
+		firstnameField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		firstnameField.setBounds(307, 227, 232, 32);
 		panel.add(firstnameField);
 		firstnameField.setColumns(10);
 		
 		lastnameField = new JTextField();
-		lastnameField.setBounds(205, 277, 222, 26);
+		lastnameField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		lastnameField.setBounds(307, 280, 232, 32);
 		panel.add(lastnameField);
 		lastnameField.setColumns(10);
 		
 		JLabel contactLabel = new JLabel("Contact#:");
-		contactLabel.setBounds(63, 331, 61, 16);
+		contactLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		contactLabel.setBounds(63, 336, 98, 23);
 		panel.add(contactLabel);
 		
 		contactField = new JTextField();
-		contactField.setBounds(205, 326, 222, 26);
+		contactField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		contactField.setBounds(307, 331, 232, 32);
 		panel.add(contactField);
 		contactField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("(10 digits, no symbols)");
+		lblNewLabel.setBounds(85, 357, 148, 16);
+		panel.add(lblNewLabel);
 	}
-
 }

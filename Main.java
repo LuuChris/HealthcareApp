@@ -1,4 +1,4 @@
-package medpack;
+//ALPHA MEDICAL
 import java.awt.EventQueue; 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,13 +13,7 @@ public class Main {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					frontLogin frame = new frontLogin();
-					frame.setVisible(true);
-					frame.setResizable(false);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				user.Login();
 			}
 		});
 		
@@ -207,10 +201,10 @@ public class Main {
 		return true;
 	}
 
-//Register2/Register21: Generates a random userkey from 1-100000, that does not match any userkey in the database
+//Register2/Register21: Generates a random userkey from 10000-100000, that does not match any userkey in the database
 	public static int generateUserkey() {
 		Random rand = new Random();
-		int  n = rand.nextInt(99999) + 1;
+		int  n = rand.nextInt(89999) + 10000;
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
@@ -221,7 +215,7 @@ public class Main {
 			while (res.next()) {
 				temp=res.getInt("userkey");
 				if (n==res.getInt("userkey")) {
-					n = rand.nextInt(99999) + 1;
+					n = rand.nextInt(89999) + 10000;
 					res.first();
 				}
 			}
@@ -234,10 +228,10 @@ public class Main {
 		return n;
 	}
 
-//Generates a random ticketkey from 1-100000, that does not match any current ticketkey in the database	
+//Generates a random ticketkey from 10000-100000, that does not match any current ticketkey in the database	
 	public static int generateTicketKey() {
 		Random rand = new Random();
-		int  n = rand.nextInt(99999) + 1;
+		int  n = rand.nextInt(89999) + 10000;
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
 			Statement stmt = con.createStatement();
@@ -248,7 +242,7 @@ public class Main {
 			while (res.next()) {
 				temp=res.getInt("ticketid");
 				if (n==res.getInt("ticketid")) {
-					n = rand.nextInt(99999) + 1;
+					n = rand.nextInt(89999) + 10000;
 					res.first();
 				}
 			}
@@ -366,6 +360,7 @@ public class Main {
 		}
 	}
 	
+//frontDoctorChoose: inputs the open tickets in a string array to be displayed
 	public static String[] ticketlist() {
 		int count=0;
 		String[] s = null;
@@ -397,7 +392,7 @@ public class Main {
 		return s;
 	}
 
-//frontChooseTicket:
+//frontChooseTicket: Adds doctors userkey to the ticket's doctorkey thus assigning the doctor to the ticket
 	public static void addDoctorToTicket(int ticketid, int doctorkey) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -415,7 +410,7 @@ public class Main {
 		}
 	}
 	
-	
+//frontViewTicket: Stores the ticket that has a doctorkey which matches the doctors userkey
 	public static String[] takenticketlist(int doctorkey) {
 		int count=0;
 		String[] s = null;
@@ -482,7 +477,7 @@ public class Main {
 		}
 	}
 	
-	
+//frontEditTicket: Stores all of the tickets with a patientkey that matches the patient's userkey in an array
 	public static String[] editticketlist(int userkey) {
 		int count=0;
 		String[] s = null;
@@ -514,6 +509,7 @@ public class Main {
 		return s;
 	}
 	
+//frontEditTicket2: Changes the description, and date of the ticket whose ticketid matches the ticket chosen
 	public static void changeTicketDescription(int ticketid, String description, String date) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -536,21 +532,7 @@ public class Main {
 		}
 	}
 	
-	public static void deleteTicket(int ticketid) {
-		try {
-			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
-			PreparedStatement stmt = con.prepareStatement("delete from ticketTable where ticketid = ?");
-			stmt.setInt(1, ticketid);
-			stmt.executeUpdate();
-			stmt.close();
-			con.close();
-		}
-		catch(Exception exc) {
-			System.out.println("ERRORRR");
-			exc.printStackTrace();
-		}
-	}
-	
+//frontEditPatient: Changes the information of a patient object in the database
 	public static void editPatient(int patientkey, String password, String allergy, String address, String medicalcondition) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -574,6 +556,7 @@ public class Main {
 		}
 	}
 	
+//frontEditPatient: Deletes the current patient from the database based on the userkey
 	public static void deletePatient(int userkey) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -597,7 +580,7 @@ public class Main {
 		}
 	}
 
-	
+//frontEditDoctor: Changes the information of a doctor object in the database
 	public static void editDoctor(int doctorkey, String password, String insurance, String specialty, String workstart, String workend) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
@@ -623,6 +606,7 @@ public class Main {
 		
 	}
 	
+//frontEditDoctor: Deletes the current doctor from the database based on the userkey
 	public static void deleteDoctor(int userkey) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");

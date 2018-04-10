@@ -1,4 +1,4 @@
-package medpack;
+
 
 
 import java.awt.BorderLayout;
@@ -29,6 +29,7 @@ public class frontDoctorList extends JFrame {
 	 * Create the frame.
 	 */
 	public frontDoctorList(patient p) {
+		setTitle("Your Doctors");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 764, 528);
 		contentPane = new JPanel();
@@ -41,20 +42,21 @@ public class frontDoctorList extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblDoctorList = new JLabel("Doctor List");
-		lblDoctorList.setFont(new Font("Arial", Font.BOLD, 18));
+		lblDoctorList.setFont(new Font("Arial", Font.BOLD, 22));
 		lblDoctorList.setBounds(307, 11, 131, 26);
 		panel.add(lblDoctorList);
 		
 		JLabel lblTheseAreThe = new JLabel("These are the doctors who chose your ticket:");
-		lblTheseAreThe.setFont(new Font("Arial", Font.PLAIN, 14));
-		lblTheseAreThe.setBounds(10, 35, 349, 56);
+		lblTheseAreThe.setFont(new Font("Arial", Font.PLAIN, 17));
+		lblTheseAreThe.setBounds(10, 42, 358, 49);
 		panel.add(lblTheseAreThe);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 84, 677, 339);
+		scrollPane.setBounds(20, 103, 677, 339);
 		panel.add(scrollPane);
 		
 		JTextArea doctorArea = new JTextArea();
+		doctorArea.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		doctorArea.setText("");
 		doctorArea.setEditable(false);
 		scrollPane.setViewportView(doctorArea);
@@ -67,7 +69,8 @@ public class frontDoctorList extends JFrame {
 			ResultSet res = stmt.executeQuery("select * from ticketTable");
 			ResultSet re = stm.executeQuery("select * from userTable");
 			ResultSet r = st.executeQuery("select * from doctorTable");
-			int dkey;
+			int ticketkey,dkey;
+			String description = "";
 			String firstname = "";
 			String lastname = "";
 			String specialty = "";
@@ -79,6 +82,8 @@ public class frontDoctorList extends JFrame {
 			while(res.next()) {
 				if(p.getUserKey()==res.getInt("patientkey") && res.getInt("doctorkey")!=-1) {
 					dkey = res.getInt("doctorkey");
+					ticketkey = res.getInt("ticketid");
+					description = res.getString("description");
 					while(re.next()) {
 						if(dkey==re.getInt("userkey")) {
 							firstname = re.getString("firstname");
@@ -91,11 +96,13 @@ public class frontDoctorList extends JFrame {
 									insurance = r.getString("insurance");
 									workstart = r.getString("workstart");
 									workend = r.getString("workend");
-									doctorArea.setText("\nName: "+firstname+" "+lastname+" || Specialty: "+specialty+" || Contact info: "+email+", "+contact+"");
+									doctorArea.append("\nTicket ID: "+ticketkey+"\nDoctor Name: "+firstname+" "+lastname+"\nSpecialty: "+specialty+"\nContact info: "+email+", #"+contact+"\nTicket Description: "+description+"\n\n");
 								}
 							}
+							r.beforeFirst();
 						}
 					}
+					re.beforeFirst();
 				}
 			}
 		}

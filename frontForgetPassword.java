@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Frame;
@@ -16,6 +16,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class frontForgetPassword extends JFrame {
 
@@ -23,8 +24,9 @@ public class frontForgetPassword extends JFrame {
 	private JTextField emailField;
 
 	public frontForgetPassword() {
+		setTitle("Forget Password");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 611, 442);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -35,15 +37,18 @@ public class frontForgetPassword extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel enterEmailLabel = new JLabel("Enter username:");
-		enterEmailLabel.setBounds(56, 115, 133, 16);
+		enterEmailLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
+		enterEmailLabel.setBounds(51, 73, 512, 56);
 		panel.add(enterEmailLabel);
 		
 		emailField = new JTextField();
-		emailField.setBounds(200, 110, 130, 26);
+		emailField.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		emailField.setBounds(51, 153, 513, 56);
 		panel.add(emailField);
 		emailField.setColumns(10);
 		
 		JButton btnGetSecurityQuestion = new JButton("Get Security Question");
+		btnGetSecurityQuestion.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		btnGetSecurityQuestion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(emailField.getText()!=null) {
@@ -55,7 +60,9 @@ public class frontForgetPassword extends JFrame {
 						while(res.next()) {
 							if( (emailField.getText() ).equals(res.getString("username") ) ) {
 								frontForgetQuestion frame = new frontForgetQuestion(res.getInt("securityint"), res.getString("securityanswer"), res.getString("password"));
+								frame.setLocationRelativeTo(panel);
 								frame.setVisible(true);
+								frame.setResizable(false);
 								setVisible(false);
 								temp=false;
 							}
@@ -66,13 +73,13 @@ public class frontForgetPassword extends JFrame {
 						
 					}
 					catch(Exception exc) {
-						System.out.println("Error");
+						System.out.println("Error(frontForgetPassword)");
 						exc.printStackTrace();
 					}
 				}
 			}
 		});
-		btnGetSecurityQuestion.setBounds(142, 169, 168, 29);
+		btnGetSecurityQuestion.setBounds(194, 253, 209, 56);
 		panel.add(btnGetSecurityQuestion);
 	}
 }

@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -44,8 +44,7 @@ public class frontDoctorHome extends JFrame {
 		btnNewButton.setBounds(242, 468, 185, 81);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frontDoctorChoose f = new frontDoctorChoose(d);
-				f.setVisible(true);
+				doctor.ChooseTicket(d);
 			}
 		});
 		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 22));
@@ -54,8 +53,7 @@ public class frontDoctorHome extends JFrame {
 		btnNewButton_1.setBounds(467, 468, 198, 81);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frontViewTicket f = new frontViewTicket(d);
-				f.setVisible(true);
+				doctor.ViewChosenTicket(d);
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.PLAIN, 22));
@@ -64,8 +62,7 @@ public class frontDoctorHome extends JFrame {
 		btnLogOut.setBounds(687, 93, 145, 21);
 		btnLogOut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frontLogin f = new frontLogin();
-				f.setVisible(true);
+				user.Logout();
 				setVisible(false);
 			}
 		});
@@ -93,7 +90,9 @@ public class frontDoctorHome extends JFrame {
 		editacountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frontEditDoctor f = new frontEditDoctor(d);
+				f.setLocationRelativeTo(panel);
 				f.setVisible(true);
+				f.setResizable(false);
 				setVisible(false);
 			}
 		});

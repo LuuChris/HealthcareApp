@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -41,9 +41,12 @@ public class frontEditDoctor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Main.deleteDoctor(d.getUserKey());
-				new frontLogin().setVisible(true);
+				frontLogin f = new frontLogin();
+				f.setVisible(true);
+				f.setResizable(false);
 			}
 		});
+		
 		btnDeleteAccount.setFont(new Font("Lucida Grande", Font.PLAIN, 11));
 		btnDeleteAccount.setBounds(424, 24, 99, 12);
 		panel.add(btnDeleteAccount);
@@ -185,17 +188,22 @@ public class frontEditDoctor extends JFrame {
 				}
 			}
 		});
+		
 		btnNewButton.setBounds(306, 569, 144, 48);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Go Back");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new frontDoctorHome(d).setVisible(true);
+				frontDoctorHome f = new frontDoctorHome(d);
+				f.setLocationRelativeTo(panel);
+				f.setVisible(true);
+				f.setResizable(false);
 				setVisible(false);
 				dispose();
 			}
 		});
+		
 		btnNewButton_1.setBounds(52, 569, 126, 48);
 		panel.add(btnNewButton_1);
 	}

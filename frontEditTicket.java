@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -23,6 +23,7 @@ public class frontEditTicket extends JFrame {
 	private JPanel contentPane;
 
 	public frontEditTicket(int patientkey) {
+		setTitle("Your Tickets");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 764, 528);
 		contentPane = new JPanel();
@@ -39,9 +40,11 @@ public class frontEditTicket extends JFrame {
 		panel.add(scrollPane);
 		
 		JList list = new JList(Main.editticketlist(patientkey));
+		list.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
 		scrollPane.setViewportView(list);
 		
 		JButton chooseButton = new JButton("Choose to edit");
+		chooseButton.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		chooseButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.isSelectionEmpty()) {
@@ -53,7 +56,9 @@ public class frontEditTicket extends JFrame {
 					int patientkey = Integer.parseInt(patientstring);
 					String description = list.getSelectedValue().toString().substring(51);
 					frontEditTicket2 f = new frontEditTicket2(ticketid, patientkey, description);
+					f.setLocationRelativeTo(panel);
 					f.setVisible(true);
+					f.setResizable(false);
 					setVisible(false);
 				}
 			}
@@ -62,10 +67,12 @@ public class frontEditTicket extends JFrame {
 		panel.add(chooseButton);
 		
 		JLabel lblNewLabel = new JLabel("Your current tickets");
-		lblNewLabel.setBounds(54, 34, 167, 16);
+		lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
+		lblNewLabel.setBounds(54, 34, 192, 21);
 		panel.add(lblNewLabel);
 		
 		JButton deleteButton = new JButton("Delete");
+		deleteButton.setFont(new Font("Lucida Grande", Font.PLAIN, 17));
 		deleteButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(list.isSelectionEmpty()) {
@@ -73,8 +80,10 @@ public class frontEditTicket extends JFrame {
 				}else {
 					String ticketstring = list.getSelectedValue().toString().substring(11,16);
 					int ticketid = Integer.parseInt(ticketstring);
-					Main.deleteTicket(ticketid);
+					ticket.ResolveTicket(ticketid);
 					frontEditTicket f = new frontEditTicket(patientkey);
+					f.setLocationRelativeTo(panel);
+					f.setResizable(false);
 					f.setVisible(true);
 					setVisible(false);
 				}

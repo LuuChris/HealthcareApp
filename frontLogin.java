@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
@@ -69,6 +69,7 @@ public class frontLogin extends JFrame{
 					if(Main.check(username, password).equals("0")) {
 						patient p = Main.pcheck(username, password);
 						frontPatientHome f = new frontPatientHome(p);
+						f.setLocationRelativeTo(panel);
 						f.setVisible(true);
 						f.setResizable(false);
 						setVisible(false);
@@ -77,6 +78,7 @@ public class frontLogin extends JFrame{
 					if(Main.check(username, password).equals("1")) {
 						doctor d = Main.dcheck(username, password);
 						frontDoctorHome f = new frontDoctorHome(d);
+						f.setLocationRelativeTo(panel);
 						f.setVisible(true);
 						f.setResizable(false);
 						setVisible(false);

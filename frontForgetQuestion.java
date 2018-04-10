@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class frontForgetQuestion extends JFrame {
 
@@ -19,8 +20,9 @@ public class frontForgetQuestion extends JFrame {
 	private JTextField answerField;
 
 	public frontForgetQuestion(int question, String answer, String password) {
+		setTitle("Get Password");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 627, 451);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -39,16 +41,19 @@ public class frontForgetQuestion extends JFrame {
 			temp="What was your highschool mascot?";
 		}
 		JLabel questionLabel = new JLabel(temp);
+		questionLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		questionLabel.setVerticalAlignment(SwingConstants.TOP);
-		questionLabel.setBounds(57, 32, 316, 49);
+		questionLabel.setBounds(57, 96, 532, 73);
 		panel.add(questionLabel);
 		
 		answerField = new JTextField();
-		answerField.setBounds(57, 107, 259, 26);
+		answerField.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		answerField.setBounds(57, 196, 532, 47);
 		panel.add(answerField);
 		answerField.setColumns(10);
 		
 		JButton btnNewButton = new JButton("Submit");
+		btnNewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if((answerField.getText()).equals(answer)) {
@@ -58,7 +63,7 @@ public class frontForgetQuestion extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(57, 198, 117, 29);
+		btnNewButton.setBounds(255, 297, 138, 61);
 		panel.add(btnNewButton);
 	}
 

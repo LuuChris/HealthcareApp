@@ -1,4 +1,4 @@
-package medpack;
+
 
 public class patient extends user{
 	
@@ -17,17 +17,24 @@ public class patient extends user{
 	
 	public static void CreateTicket(int num) {
 		frontCreateTicket f = new frontCreateTicket(num);
+		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+		f.setResizable(false);
 	}
 	
 	public static void EditTicket(int patientkey) {
 		frontEditTicket f = new frontEditTicket(patientkey);
+		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+		f.setResizable(false);
 		
 	}
 	
-	public static void ViewDoctorInfo() {
-		
+	public static void ViewDoctorInfo(patient p) {
+		frontDoctorList f = new frontDoctorList(p);
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.setResizable(false);
 	}
 	
 //-------------------------------------------------------------------------------

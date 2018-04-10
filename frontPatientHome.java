@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -58,25 +58,23 @@ public class frontPatientHome extends JFrame {
 				patient.CreateTicket(p.getUserKey());
 			}
 		});
-		createButton.setBounds(92, 473, 185, 65);
+		createButton.setBounds(92, 473, 174, 65);
 		panel.add(createButton);
 		
-		JButton viewButton = new JButton("View Doctor Info");
+		JButton viewButton = new JButton("Your Doctors");
 		viewButton.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 		viewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frontDoctorList f = new frontDoctorList(p);
-				f.setVisible(true);
+				patient.ViewDoctorInfo(p);
 			}
 		});
-		viewButton.setBounds(519, 473, 189, 65);
+		viewButton.setBounds(511, 473, 197, 65);
 		panel.add(viewButton);
 		
 		JButton btnNewButton = new JButton("Logout");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frontLogin f = new frontLogin();
-				f.setVisible(true);
+				user.Logout();
 				setVisible(false);
 			}
 		});
@@ -101,7 +99,7 @@ public class frontPatientHome extends JFrame {
 				patient.EditTicket(p.getUserKey());
 			}
 		});
-		editticketButton.setBounds(305, 473, 189, 65);
+		editticketButton.setBounds(305, 473, 174, 65);
 		panel.add(editticketButton);
 		
 		JButton editaccountButton = new JButton("Edit Account");
@@ -109,7 +107,9 @@ public class frontPatientHome extends JFrame {
 		editaccountButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				frontEditPatient f = new frontEditPatient(p);
+				f.setLocationRelativeTo(panel);
 				f.setVisible(true);
+				f.setResizable(false);
 				setVisible(false);
 			}
 		});

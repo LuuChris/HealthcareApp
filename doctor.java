@@ -1,4 +1,4 @@
-package medpack;
+
 
 public class doctor extends user{
 	
@@ -15,11 +15,18 @@ public class doctor extends user{
 	}
 	
 	
-	public void ChooseTicket() {
-		
+	public static void ChooseTicket(doctor d) {
+		frontDoctorChoose f = new frontDoctorChoose(d);
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.setResizable(false);
 	}
 	
-	public void ViewChosenTicket() {
+	public static void ViewChosenTicket(doctor d) {
+		frontViewTicket f = new frontViewTicket(d);
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.setResizable(false);
 		
 	}
 	

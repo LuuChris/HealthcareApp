@@ -1,4 +1,4 @@
-package medpack;
+
 import java.awt.Frame;
 import java.sql.*;
 
@@ -6,8 +6,8 @@ import javax.swing.JOptionPane;
 
 public class user {
 	
-	protected static String contact, email, firstname, lastname, password, securityanswer, type, username;
-	protected static int securityint, userkey;
+	protected String contact, email, firstname, lastname, password, securityanswer, type, username;
+	protected int securityint, userkey;
 	
 	public user(String contact, String email, String firstname, String lastname, String password, String securityanswer, String type, String username, int securityint, int userkey) {
 		this.contact = contact;
@@ -24,26 +24,32 @@ public class user {
 	
 	public static void Register() {
 		Register f = new Register();
+		f.setLocationRelativeTo(null);
 		f.setVisible(true);
+		f.setResizable(false);
 	}
 	
 	public static void Login() {
+		try {
+			frontLogin frame = new frontLogin();
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+			frame.setResizable(false);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public static void Logout() {
-		
-	}
-	
-	public static void DeleteAccount() {
-		
-	}
-	
-	public static void EditAccount() {
-		
+		frontLogin f = new frontLogin();
+		f.setLocationRelativeTo(null);
+		f.setVisible(true);
+		f.setResizable(false);
 	}
 	
 	public static void ForgetPassword() {
 		frontForgetPassword f = new frontForgetPassword();
+		f.setLocationRelativeTo(null);
 		f.setResizable(false);
 		f.setVisible(true);
 	}

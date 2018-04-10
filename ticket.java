@@ -1,4 +1,6 @@
-package medpack;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 public class ticket {
 	
@@ -15,8 +17,19 @@ public class ticket {
 		this.doctorkey = doctorkey;
 	}
 	
-	public void ResolveTicket() {
-		
+	public static void ResolveTicket(int ticketid) {
+		try {
+			Connection con = DriverManager.getConnection("jdbc:mysql://sql9.freemysqlhosting.net:3306/sql9229419", "sql9229419" , "SJtMZMKmYd");
+			PreparedStatement stmt = con.prepareStatement("delete from ticketTable where ticketid = ?");
+			stmt.setInt(1, ticketid);
+			stmt.executeUpdate();
+			stmt.close();
+			con.close();
+		}
+		catch(Exception exc) {
+			System.out.println("ERRORRR");
+			exc.printStackTrace();
+		}
 	}
 	
 //------------------------------------------------------------------------------------
