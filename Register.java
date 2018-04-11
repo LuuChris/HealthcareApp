@@ -91,6 +91,7 @@ public class Register extends JFrame {
 		usernameField.setColumns(10);
 		
 		passwordField = new JTextField();
+		passwordField.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
 		passwordField.setBounds(307, 127, 232, 32);
 		panel.add(passwordField);
 		passwordField.setColumns(10);
