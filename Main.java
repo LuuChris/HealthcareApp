@@ -1,4 +1,3 @@
-package medpack;
 //ALPHA MEDICAL
 import java.awt.EventQueue; 
 import java.sql.*;

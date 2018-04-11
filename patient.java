@@ -1,4 +1,3 @@
-package medpack;
 
 
 public class patient extends user{

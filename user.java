@@ -1,4 +1,3 @@
-package medpack;
 
 import java.awt.Frame;
 import java.sql.*;
